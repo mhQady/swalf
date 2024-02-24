@@ -1,11 +1,11 @@
 <?php
 
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
+use App\Enums\User\CompleteDataEnum;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
 
-return new class extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      */
@@ -13,12 +13,20 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
-            $table->rememberToken();
+            $table->unsignedTinyInteger('complete_data')->default(CompleteDataEnum::NONE->value);
+            $table->string('phone_code')->default('966');
+            $table->string('phone')->unique();
+            $table->string('name')->nullable();
+            $table->timestamp('phone_verified_at')->nullable();
+            $table->string('email')->unique()->nullable();
+            $table->unsignedTinyInteger('gender')->nullable();
+            $table->date('birth_date')->nullable();
+            $table->foreignId('country_id')->nullable()->constrained('countries')->onDelete('set null');
+            // $table->timestamp('email_verified_at')->nullable();
+            $table->string('password')->nullable();
+            // $table->rememberToken();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

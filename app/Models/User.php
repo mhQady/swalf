@@ -3,10 +3,11 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Laravel\Sanctum\HasApiTokens;
+use App\Enums\User\CompleteDataEnum;
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
-use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
@@ -19,8 +20,11 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
+        'phone_code',
+        'phone',
         'email',
         'password',
+        'complete_data'
     ];
 
     /**
@@ -30,7 +34,7 @@ class User extends Authenticatable
      */
     protected $hidden = [
         'password',
-        'remember_token',
+        // 'remember_token',
     ];
 
     /**
@@ -39,7 +43,30 @@ class User extends Authenticatable
      * @var array<string, string>
      */
     protected $casts = [
-        'email_verified_at' => 'datetime',
+        'complete_data' => CompleteDataEnum::class,
+        'phone_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function allOtp()
+    {
+        return $this->morphMany(Otp::class, 'otpable');
+    }
+
+    public function lastOtp()
+    {
+        return $this->morphOne(Otp::class, 'otpable')->latestOfMany();
+    }
+
+    public function nextStep()
+    {
+        return match ($this->complete_data) {
+            CompleteDataEnum::NONE => CompleteDataEnum::PHONE_VERIFIED,
+            CompleteDataEnum::PHONE_VERIFIED => CompleteDataEnum::PASSWORD_ENTERED,
+            CompleteDataEnum::PASSWORD_ENTERED => CompleteDataEnum::PERSONAL_INFO_ENTERED,
+            CompleteDataEnum::PERSONAL_INFO_ENTERED => CompleteDataEnum::FILES_UPLOADED,
+            // CompleteDataEnum::FILES_UPLOADED => CompleteDataEnum::SECURITY_CHECKED,
+            default => CompleteDataEnum::NONE,
+        };
+    }
 }
