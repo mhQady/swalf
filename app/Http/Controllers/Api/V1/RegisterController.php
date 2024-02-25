@@ -27,7 +27,7 @@ class RegisterController extends ApiBaseController
         if ($user->phone_verified_at)
             return $this->respondWithErrors(__('main.verified.phone'), 409, ['step' => $user->nextStep(), 'user' => new UserResource($user)]);
 
-        OTPSender::send($user, 2, __('main.confirm.phone'));
+        OtpSender::send($user, 2, __('main.confirm.phone'));
 
         return $this->respondWithSuccess(
             __('main.sent.otp'),

@@ -23,7 +23,7 @@ class LoginController extends ApiBaseController
 
         $user->tokens()->delete();
 
-        $token = $user->createToken('loginToken')->plainTextToken;
+        $token = $user->createToken('login-token')->plainTextToken;
 
         return $this->respondWithSuccess(
             __('Login successfully'),

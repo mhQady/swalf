@@ -3,10 +3,8 @@
 namespace App\Services\OTP;
 
 use App\Models\User;
-use App\Mail\OtpEmail;
 use App\Services\Notification\NotificationSender;
 use Illuminate\Contracts\Auth\Authenticatable;
-use Illuminate\Support\Facades\Mail;
 
 class OtpSender
 {
@@ -34,7 +32,7 @@ class OtpSender
         }
     }
 
-    protected function generateNumericOTP($n = 5): void
+    protected function generateNumericOTP($n = 4): void
     {
         $generator = "1357902468";
 
