@@ -1,9 +1,14 @@
 <?php
 
+use App\Http\Controllers\Api\V1\CountriesController;
+use App\Http\Controllers\Api\V1\InterestsController;
 use Illuminate\Http\Request;
+use App\Services\OTP\OtpSender;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\V1\LoginController;
+use App\Http\Controllers\Api\V1\LogoutController;
 use App\Http\Controllers\Api\V1\RegisterController;
+use App\Http\Controllers\Api\V1\CompleteDataController;
 
 
 Route::middleware('guest:sanctum')->group(function () {
@@ -14,10 +19,18 @@ Route::middleware('guest:sanctum')->group(function () {
     Route::post('login', LoginController::class);
 });
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+Route::middleware('auth:sanctum')->group(function () {
+    Route::get('/user', function (Request $request) {
+        return $request->user();
+    });
 
-Route::get('test', function () {
-    return 'test successful';
+    Route::post('/send-otp', function (Request $request) {
+        OtpSender::send(request()->user(), 1, __('main.sent.otp'));
+    });
+    Route::get('countries', CountriesController::class);
+    Route::get('interests', InterestsController::class);
+    Route::post('logout', LogoutController::class);
+
+    Route::post('complete-data/enter-personal-info', [CompleteDataController::class, 'enterPersonalInfo']);
+    Route::post('complete-data/enter-country', [CompleteDataController::class, 'enterCountry']);
 });

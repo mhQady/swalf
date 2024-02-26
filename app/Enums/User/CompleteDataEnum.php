@@ -12,6 +12,6 @@ enum CompleteDataEnum: int
     case PHONE_VERIFIED = 1;
     case PASSWORD_ENTERED = 2;
     case PERSONAL_INFO_ENTERED = 3;
-    case FILES_UPLOADED = 4;
+    case COUNTRY_ENTERED = 4;
     case SECURITY_CHECKED = 5;
 }

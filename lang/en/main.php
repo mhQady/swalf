@@ -19,4 +19,7 @@ return [
     'wrong_step' => 'Wrong step',
     'password_entered' => 'Password has been entered',
     'logged_out' => 'Logged out successfully',
+    'Personal info already entered' => 'Personal info already entered',
+    'Personal info has been saved successfully' => 'Personal info has been saved successfully',
+    'country_entered' => 'Country has been selected successfully',
 ];

@@ -19,4 +19,7 @@ return [
     'wrong_step' => 'خطأ في الخطوة',
     'password_entered' => 'تم تسجيل كلمة المرور بالفعل',
     'logged_out' => 'تم تسجيل الخروج بنجاح',
+    'Personal info already entered' => 'تم تسجيل المعلومات الشخصية بالفعل',
+    'Personal info has been saved successfully' => 'تم حفظ المعلومات الشخصية بنجاح',
+    'country_entered' => 'تم اختيار الدولة بنجاح',
 ];
