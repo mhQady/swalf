@@ -33,4 +33,5 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::post('complete-data/enter-personal-info', [CompleteDataController::class, 'enterPersonalInfo']);
     Route::post('complete-data/enter-country', [CompleteDataController::class, 'enterCountry']);
+    Route::post('complete-data/enter-interests', [CompleteDataController::class, 'enterInterests']);
 });

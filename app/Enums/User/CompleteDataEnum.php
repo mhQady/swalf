@@ -13,5 +13,5 @@ enum CompleteDataEnum: int
     case PASSWORD_ENTERED = 2;
     case PERSONAL_INFO_ENTERED = 3;
     case COUNTRY_ENTERED = 4;
-    case SECURITY_CHECKED = 5;
+    case INTERESTS_ENTERED = 5;
 }

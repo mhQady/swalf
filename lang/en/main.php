@@ -22,4 +22,5 @@ return [
     'Personal info already entered' => 'Personal info already entered',
     'Personal info has been saved successfully' => 'Personal info has been saved successfully',
     'country_entered' => 'Country has been selected successfully',
+    'interests_entered' => 'Interests has been selected successfully',
 ];

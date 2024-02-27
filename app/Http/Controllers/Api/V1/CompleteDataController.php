@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Api\V1;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use App\Enums\User\CompleteDataEnum;
 use App\Http\Resources\UserResource;
 use Illuminate\Support\Facades\Auth;
@@ -58,24 +60,38 @@ class CompleteDataController extends ApiBaseController
     }
 
     # 6. Enter Interests
-    // public function enterPassword(EnterPasswordRequest $request): JsonResponse
-    // {
-    //     $user = User::find($request->user_id);
+    public function enterInterests(Request $request): JsonResponse
+    {
+        $request->validate([
+            'interests' => ['required', 'array'],
+            'interests.*' => ['integer', 'exists:interests,id']
+        ]);
 
-    //     if ($user->password)
-    //         return $this->respondWithErrors(__('main.password_entered'), 409, ['step' => $user->nextStep(), 'user' => new UserResource($user)]);
+        $user = Auth::user();
 
-    //     $user->update([
-    //         'complete_data' => CompleteDataEnum::PASSWORD_ENTERED->value,
-    //         'password' => $request->password
-    //     ]);
+        if ($user->interests()->exists())
+            return $this->respondWithErrors(__('main.wrong_step'), 409, ['step' => $user->nextStep(), 'user' => new UserResource($user)]);
 
-    //     return $this->respondWithSuccess(
-    //         __('Password has been saved successfully'),
-    //         [
-    //             'user' => new UserResource($user->fresh()),
-    //             'token' => $user->createToken('login-token')->plainTextToken
-    //         ]
-    //     );
-    // }
+        try {
+
+            DB::transaction(function () use ($request, $user) {
+
+                $user->update([
+                    'complete_data' => CompleteDataEnum::INTERESTS_ENTERED->value,
+                ]);
+
+                $user->interests()->attach($request->interests);
+            });
+
+        } catch (\Exception $exception) {
+            Log::info($exception->getMessage());
+        }
+
+        return $this->respondWithSuccess(
+            __('main.interests_entered'),
+            [
+                'user' => new UserResource($user->fresh()),
+            ]
+        );
+    }
 }

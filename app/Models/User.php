@@ -3,6 +3,8 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Laravel\Sanctum\HasApiTokens;
 use App\Enums\User\CompleteDataEnum;
 use Illuminate\Notifications\Notifiable;
@@ -45,6 +47,10 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
+    public function interests(): BelongsToMany
+    {
+        return $this->belongsToMany(Interest::class);
+    }
     public function allOtp()
     {
         return $this->morphMany(Otp::class, 'otpable');
@@ -61,8 +67,8 @@ class User extends Authenticatable
             CompleteDataEnum::NONE => CompleteDataEnum::PHONE_VERIFIED,
             CompleteDataEnum::PHONE_VERIFIED => CompleteDataEnum::PASSWORD_ENTERED,
             CompleteDataEnum::PASSWORD_ENTERED => CompleteDataEnum::PERSONAL_INFO_ENTERED,
-            CompleteDataEnum::PERSONAL_INFO_ENTERED => CompleteDataEnum::FILES_UPLOADED,
-            // CompleteDataEnum::FILES_UPLOADED => CompleteDataEnum::SECURITY_CHECKED,
+            CompleteDataEnum::PERSONAL_INFO_ENTERED => CompleteDataEnum::COUNTRY_ENTERED,
+            CompleteDataEnum::COUNTRY_ENTERED => CompleteDataEnum::INTERESTS_ENTERED,
             default => CompleteDataEnum::NONE,
         };
     }

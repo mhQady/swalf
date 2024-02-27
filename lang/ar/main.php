@@ -22,4 +22,5 @@ return [
     'Personal info already entered' => 'تم تسجيل المعلومات الشخصية بالفعل',
     'Personal info has been saved successfully' => 'تم حفظ المعلومات الشخصية بنجاح',
     'country_entered' => 'تم اختيار الدولة بنجاح',
+    'interests_entered' => 'تم تسجيل الاهتمامات بنجاح',
 ];
