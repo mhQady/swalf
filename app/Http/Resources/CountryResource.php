@@ -4,7 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Request;
 
-class CountriesResource extends BaseResource
+class CountryResource extends BaseResource
 {
     /**
      * Transform the resource into an array.

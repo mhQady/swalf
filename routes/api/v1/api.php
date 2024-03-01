@@ -3,6 +3,8 @@
 use App\Http\Controllers\Api\V1\CountriesController;
 use App\Http\Controllers\Api\V1\ForgotPasswordController;
 use App\Http\Controllers\Api\V1\InterestsController;
+use App\Http\Controllers\Api\V1\ProfileController;
+use App\Http\Resources\UserResource;
 use Illuminate\Http\Request;
 use App\Services\OTP\OtpSender;
 use Illuminate\Support\Facades\Route;
@@ -25,13 +27,15 @@ Route::middleware('guest:sanctum')->group(function () {
 });
 
 Route::middleware('auth:sanctum')->group(function () {
+
     Route::get('/user', function (Request $request) {
-        return $request->user();
+        return new UserResource($request->user()->load('country'));
     });
 
     Route::post('/send-otp', function (Request $request) {
         OtpSender::send(request()->user(), 1, __('main.sent.otp'));
     });
+
     Route::get('countries', CountriesController::class);
     Route::get('interests', InterestsController::class);
     Route::post('logout', LogoutController::class);
@@ -39,4 +43,6 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('complete-data/enter-personal-info', [CompleteDataController::class, 'enterPersonalInfo']);
     Route::post('complete-data/enter-country', [CompleteDataController::class, 'enterCountry']);
     Route::post('complete-data/enter-interests', [CompleteDataController::class, 'enterInterests']);
+
+    Route::post('profile/update', [ProfileController::class, 'update']);
 });

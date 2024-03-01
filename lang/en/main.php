@@ -21,6 +21,9 @@ return [
     'changed' => [
         'password' => 'Password has been changed successfully',
     ],
+    'updated' => [
+        'profile' => 'Profile has been updated successfully',
+    ],
     'wrong_step' => 'Wrong step',
     'password_entered' => 'Password has been entered',
     'logged_out' => 'Logged out successfully',

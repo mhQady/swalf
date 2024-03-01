@@ -24,6 +24,8 @@ class UserResource extends BaseResource
             'phone_code' => $this->phone_code,
             'phone' => $this->phone,
             'email' => $this->email,
+            'gender' => $this->gender,
+            'birth_date' => $this->birth_date,
         ];
 
         $this->mini = [
@@ -36,6 +38,7 @@ class UserResource extends BaseResource
 
         $this->relations = [
             'tokens' => $this->whenLoaded('tokens'),
+            'country' => new CountryResource($this->whenLoaded('country')),
         ];
 
         return $this->getResource();
