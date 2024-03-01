@@ -18,5 +18,5 @@ return [
     'throttled' => 'Please wait before retrying.',
     'token' => 'This password reset token is invalid.',
     'user' => "We can't find a user with that email address.",
-
+    'not_match_current' => 'يجب انا لا تكون كلمة المرور الجديدة متطابقة مع كلمة المرور الحالية.',
 ];

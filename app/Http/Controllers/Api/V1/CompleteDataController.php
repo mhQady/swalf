@@ -19,7 +19,7 @@ class CompleteDataController extends ApiBaseController
     {
         $user = Auth::user();
 
-        if ($user->name || $user->gender || $user->birth_date)
+        if ($user->name || $user->birth_date)
             return $this->respondWithErrors(__('main.Personal info already entered'), 409, ['step' => $user->nextStep(), 'user' => new UserResource($user)]);
 
         $user->update(

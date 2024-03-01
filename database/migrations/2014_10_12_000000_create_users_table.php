@@ -25,7 +25,7 @@ return new class extends Migration {
             $table->foreignId('country_id')->nullable()->constrained('countries')->onDelete('set null');
             $table->text('about')->nullable();
             $table->string('password')->nullable();
-            // $table->rememberToken();
+            $table->timestamp('change_password_requested_at')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

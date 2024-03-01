@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\V1\CountriesController;
+use App\Http\Controllers\Api\V1\ForgotPasswordController;
 use App\Http\Controllers\Api\V1\InterestsController;
 use Illuminate\Http\Request;
 use App\Services\OTP\OtpSender;
@@ -17,6 +18,10 @@ Route::middleware('guest:sanctum')->group(function () {
     Route::post('register/enter-password', [RegisterController::class, 'enterPassword']);
 
     Route::post('login', LoginController::class);
+
+    Route::post('forgot-password/send-otp', [ForgotPasswordController::class, 'sendOtp']);
+    Route::post('forgot-password/confirm-otp', [ForgotPasswordController::class, 'confirmOtp']);
+    Route::post('forgot-password/change-password', [ForgotPasswordController::class, 'changePassword']);
 });
 
 Route::middleware('auth:sanctum')->group(function () {

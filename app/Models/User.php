@@ -44,6 +44,7 @@ class User extends Authenticatable
     protected $casts = [
         'complete_data' => CompleteDataEnum::class,
         'phone_verified_at' => 'datetime',
+        'change_password_requested_at' => 'datetime',
         'password' => 'hashed',
     ];
 

@@ -16,7 +16,7 @@ class OtpSender
     public static function send(User|Authenticatable $user, int $type = 1, string|null $subject = null)
     {
         # type-> 1:Send by all, 2:Send by sms, 3:Send email
-        return (new self($user, $type, $subject))->sendOtp();
+        return(new self($user, $type, $subject))->sendOtp();
     }
 
     protected function sendOtp()
@@ -25,7 +25,7 @@ class OtpSender
 
             $this->generateNumericOTP();
 
-            return NotificationSender::send($this->user, $this->type, $this->subject, $this->generatedOtp->code);
+            return NotificationSender::send($this->user, $this->type, $this->subject, __('main.otp_message', ['code' => $this->generatedOtp->code]));
 
         } catch (\Exception $e) {
             throw new \Exception($e->getMessage());
@@ -43,7 +43,7 @@ class OtpSender
         }
 
         if (!app()->environment('production'))
-            $result = 11111;
+            $result = 1111;
 
 
         $this->user->allOtp()->delete();
