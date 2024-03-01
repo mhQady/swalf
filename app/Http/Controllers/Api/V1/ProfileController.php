@@ -23,4 +23,11 @@ class ProfileController extends ApiBaseController
             'user' => new UserResource($request->user()->fresh()->load('country'))
         ]);
     }
+
+    public function delete()
+    {
+        auth()->user()->delete();
+
+        return $this->respondWithSuccess(__('main.deleted.user'));
+    }
 }

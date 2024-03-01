@@ -45,4 +45,5 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('complete-data/enter-interests', [CompleteDataController::class, 'enterInterests']);
 
     Route::post('profile/update', [ProfileController::class, 'update']);
+    Route::delete('profile/delete', [ProfileController::class, 'delete']);
 });

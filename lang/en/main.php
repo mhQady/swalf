@@ -24,6 +24,9 @@ return [
     'updated' => [
         'profile' => 'Profile has been updated successfully',
     ],
+    'deleted' => [
+        'user' => 'User has been deleted successfully',
+    ],
     'wrong_step' => 'Wrong step',
     'password_entered' => 'Password has been entered',
     'logged_out' => 'Logged out successfully',
