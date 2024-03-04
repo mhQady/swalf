@@ -46,4 +46,5 @@ return [
     'verify_otp' => 'تحقق من كود التحقق',
     'change_password' => 'تغيير كلمة المرور',
     'remember_me' => 'تذكرني',
+    'logout' => 'تسجيل الخروج',
 ];

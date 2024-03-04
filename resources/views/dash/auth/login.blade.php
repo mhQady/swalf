@@ -12,21 +12,26 @@
                             <h4 class="font-weight-bolder">@lang('main.login')</h4>
                         </div>
                         <div class="card-body">
-                            <form role="form">
-                                <div class="mb-3">
+                            <form role="form" method="POST" action="{{ route('dash.authenticate') }}">
+                                @csrf
+                                <div class="form-group">
                                     <input type="email" class="form-control form-control-lg"
-                                        placeholder="@lang('main.email')" aria-label="Email">
+                                        placeholder="@lang('main.email')" aria-label="Email" name="email"
+                                        value="{{ old('email') }}">
+                                    @error('email') <small class="text-danger">{{ $message }}</small> @enderror
                                 </div>
-                                <div class="mb-3">
-                                    <input type="email" class="form-control form-control-lg"
-                                        placeholder="@lang('main.password')" aria-label="Password">
+                                <div class="form-group">
+                                    <input type="password" class="form-control form-control-lg"
+                                        placeholder="@lang('main.password')" aria-label="Password" name="password">
+                                    @error('password') <small class="text-danger">{{ $message }}</small> @enderror
                                 </div>
-                                <div class="form-check form-switch">
-                                    <input class="form-check-input" type="checkbox" id="rememberMe">
+                                <div class="form-check form-switch" dir="ltr">
+                                    <input class="form-check-input" @checked(old('remember')) type="checkbox"
+                                        id="rememberMe" name="remember" value="1">
                                     <label class="form-check-label" for="rememberMe">@lang('main.remember_me')</label>
                                 </div>
                                 <div class="text-center">
-                                    <button type="button"
+                                    <button type="submit"
                                         class="btn btn-lg bg-gradient-primary btn-lg w-100 mt-4 mb-0">@lang('main.login')</button>
                                 </div>
                             </form>

@@ -5,8 +5,10 @@ namespace Database\Seeders;
 use App\Models\Admin;
 use App\Models\Permission;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Models\Role;
+use Illuminate\Support\Facades\Hash;
+use Spatie\Permission\PermissionRegistrar;
+use App\Services\Permissions\GeneratePermissions;
 
 class PermissionSeeder extends Seeder
 {
@@ -17,22 +19,23 @@ class PermissionSeeder extends Seeder
      */
     public function run()
     {
-        // Seed the default permissions
-        $permissions = Permission::defaultPermissions();
 
-        foreach ($permissions as $perm) {
-            Permission::firstOrCreate(['name' => $perm['name'], 'guard_name' => 'admin'], ['model' => $perm['model']]);
-        }
+        app()[PermissionRegistrar::class]->forgetCachedPermissions();
 
-        $role = Role::firstOrCreate(['id' => 1, 'name' => 'Admin', 'guard_name' => 'admin']);
+        $this->command->info('Adding default permissions...');
+        GeneratePermissions::generatePermissions();
 
-        $role->givePermissionTo(\Spatie\Permission\Models\Permission::all()->pluck('name'));
+        $role = Role::firstOrCreate(['name' => 'super-admin', 'guard_name' => 'admin']);
+
+        $role->syncPermissions(Permission::all()->pluck('name'));
+
+        $this->command->info('Create Super Admin...');
 
         $admin = Admin::firstOrCreate([
-            'email' => 'superadmin@admin.com',
+            'email' => 'admin@swalf.com',
         ], [
-            'name' => 'Super-Admin',
-            'password' => 'password',
+            'name' => 'Super Admin',
+            'password' => 'password'
         ]);
 
         $admin->assignRole($role);

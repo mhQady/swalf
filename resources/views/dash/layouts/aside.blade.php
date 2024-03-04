@@ -6,7 +6,7 @@
         <a class="navbar-brand m-0"
             href=" https://demos.creative-tim.com/soft-ui-dashboard-pro/pages/dashboards/default.html " target="_blank">
             <img src="../../assets/img/logo-ct-dark.png" class="navbar-brand-img h-100" alt="main_logo">
-            <span class="ms-1 font-weight-bold">Soft UI Dashboard PRO</span>
+            <span class="ms-1 font-weight-bold">{{ config('app.name') }}</span>
         </a>
     </div>
     <hr class="horizontal dark mt-0">

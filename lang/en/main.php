@@ -46,4 +46,5 @@ return [
     'verify_otp' => 'Verify OTP',
     'change_password' => 'Change Password',
     'remember_me' => 'Remember Me',
+    'logout' => 'Logout',
 ];

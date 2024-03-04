@@ -19,11 +19,12 @@ class RedirectIfAuthenticated
     {
         $guards = empty($guards) ? [null] : $guards;
 
-        #TODO: Handle multiple guards;
-
-        dd($guards);
         foreach ($guards as $guard) {
             if (Auth::guard($guard)->check()) {
+
+                if($guard == 'admin')
+                return to_route('dash.home');
+
                 return redirect(RouteServiceProvider::HOME);
             }
         }
