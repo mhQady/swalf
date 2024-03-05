@@ -23367,6 +23367,11 @@ html {
     transition: all 0.2s ease-in-out;
 }
 
+[dir='rtl'] .navbar-vertical .navbar-nav .nav-link[data-bs-toggle="collapse"]:after {
+    margin-left: unset;
+    margin-right: auto;
+}
+
 @media (prefers-reduced-motion: reduce) {
     .navbar-vertical .navbar-nav .nav-link[data-bs-toggle="collapse"]:after {
         transition: none;
@@ -23411,6 +23416,12 @@ html {
     width: 5px;
     border-radius: 1.5rem;
     background: rgba(58, 65, 111, 0.5);
+}
+
+[dir="rtl"] .navbar-vertical .navbar-nav .nav-item .collapse .nav .nav-item .nav-link:before,
+[dir="rtl"] .navbar-vertical .navbar-nav .nav-item .collapsing .nav .nav-item .nav-link:before {
+    left: unset;
+    right: -18px;
 }
 
 .navbar-vertical .navbar-nav .nav-item .collapse .nav .nav-item .nav-link.active,
@@ -37516,6 +37527,56 @@ svg.leaflet-image-layer.leaflet-interactive path {
     transition-delay: 0s;
     -webkit-transform: scale(1);
     transform: scale(1);
+}
+
+.nav-item ul.nav {
+    padding-left: 1rem;
+    padding-right: 0;
+    margin-left: 1.5rem;
+    margin-right: 0;
+}
+
+[dir="rtl"] .nav-item ul.nav {
+    padding-left: 0;
+    padding-right: 1rem;
+    margin-left: 0;
+    margin-right: 1.5rem;
+}
+
+[dir="rtl"] .g-sidenav-hidden .nav-item ul.nav {
+    padding-left: 0;
+    padding-right: 0;
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.nav-item .icon {
+    margin-right: 0.5rem;
+    margin-left: 0;
+}
+
+[dir="rtl"] .nav-item .icon {
+    margin-right: 0;
+    margin-left: 0.5rem;
+}
+
+.nav-item h6 {
+    padding-left: 1.5rem;
+    padding-right: 0;
+    margin-left: 0.5rem;
+    margin-right: 0;
+}
+
+[dir="rtl"] .nav-item h6 {
+    padding-left: 0;
+    padding-right: 1.5rem;
+    margin-left: 0;
+    margin-right: 0.5rem;
+}
+
+[dir="rtl"] .dropdown .dropdown-menu {
+    left: 0 !important;
+    right: auto !important;
 }
 
 /*# sourceMappingURL=dashboard-pro.css.map */

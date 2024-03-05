@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ app()->getLocale() }}">
+<html lang="{{ app()->getLocale() }}" dir="{{ app()->getLocale() == 'ar' ? 'rtl' : 'ltr' }}">
 
     @include('dash.layouts.head')
 
@@ -119,15 +119,6 @@
             </div>
         </div> --}}
 
-        {{-- <script>
-            var win = navigator.platform.indexOf('Win') > -1;
-                if (win && document.querySelector('#sidenav-scrollbar')) {
-                var options = {
-                    damping: '0.5'
-                }
-                Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
-                }
-        </script> --}}
 
 
     </body>

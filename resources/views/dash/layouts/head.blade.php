@@ -6,12 +6,9 @@
 
     <title>@yield('title', config('app.name'))</title>
 
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" />
-
-    {{-- <link rel="stylesheet" href="{{ asset('dashboard/fonts/tajawal/tajawal.css') }}"> --}}
-    <link rel="stylesheet" href="{{ vite::asset('resources/dash/fonts/tajawal/tajawal.css') }}">
-
-    <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     @vite( 'resources/js/dashApp.js')
 </head>
