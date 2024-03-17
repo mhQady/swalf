@@ -3,6 +3,7 @@
 return [
     'sent' => [
         'otp' => 'OTP has been sent to your phone',
+        'message' => 'Message has been sent successfully',
     ],
     'verified' => [
         'phone' => 'Phone has been verified',
