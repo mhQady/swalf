@@ -93,6 +93,6 @@ class BaseResource extends JsonResource
 
     public function getAttributesWithRelations($attributes)
     {
-        return array_merge($this->relations, $attributes);
+        return array_merge($attributes, $this->relations);
     }
 }

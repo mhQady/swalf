@@ -79,7 +79,11 @@ class GeneratePermissions
     protected static function diffModels(): array
     {
         return [
-            'otp'
+            'otp',
+            'chat',
+            'chatmember',
+            'state',
+            'tempuploader',
         ];
     }
 

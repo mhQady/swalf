@@ -14,6 +14,9 @@ return new class extends Migration {
             $table->string('code');
             $table->string('name');
             $table->integer('phone_code');
+            $table->boolean('is_active')->default(1);
+            $table->boolean('has_market')->default(0);
+            $table->string('currency_code')->nullable();
         });
     }
 

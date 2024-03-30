@@ -14,6 +14,14 @@ return [
     ],
     'not_found' => [
         'user' => 'User not found',
+        'product' => 'Product not found',
+        'file' => 'File not found',
+    ],
+    'not_owner' => [
+        'product' => 'You are not the owner of this product',
+    ],
+    'uploaded' => [
+        'file' => 'File has been uploaded successfully',
     ],
     'not_valid' => [
         'otp' => 'Otp is expired or invalid',
@@ -24,9 +32,15 @@ return [
     ],
     'updated' => [
         'profile' => 'Profile has been updated successfully',
+        'product' => 'Product has been updated successfully',
     ],
     'deleted' => [
         'user' => 'User has been deleted successfully',
+        'product' => 'Product has been deleted successfully',
+        'file' => 'Media has been deleted successfully',
+    ],
+    'created' => [
+        'product' => 'Product has been created successfully',
     ],
     'wrong_step' => 'Wrong step',
     'password_entered' => 'Password has been entered',

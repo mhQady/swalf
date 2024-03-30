@@ -6,13 +6,16 @@ use App\Http\Resources\UserResource;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\V1\ChatController;
+use App\Http\Controllers\Api\V1\HomeController;
 use App\Http\Controllers\Api\V1\LoginController;
 use App\Http\Controllers\Api\V1\LogoutController;
+use App\Http\Controllers\Api\V1\ProductController;
 use App\Http\Controllers\Api\V1\ProfileController;
 use App\Http\Controllers\Api\V1\RegisterController;
 use App\Http\Controllers\Api\V1\CountriesController;
 use App\Http\Controllers\Api\V1\InterestsController;
 use App\Http\Controllers\Api\V1\CompleteDataController;
+use App\Http\Controllers\Api\V1\MediaUploaderController;
 use App\Http\Controllers\Api\V1\ForgotPasswordController;
 
 
@@ -38,7 +41,11 @@ Route::middleware('auth:sanctum')->group(function () {
         OtpSender::send(request()->user(), 1, __('main.sent.otp'));
     });
 
-    Route::get('countries', CountriesController::class);
+    Route::post('media/upload', [MediaUploaderController::class, 'uploadFile']);
+    Route::delete('media/{media}', [MediaUploaderController::class, 'deleteFile']);
+
+    Route::get('countries', [CountriesController::class, 'index']);
+    Route::get('countries/{country}/cities', [CountriesController::class, 'getCities']);
     Route::get('interests', InterestsController::class);
     Route::post('logout', LogoutController::class);
 
@@ -52,5 +59,9 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('chats', [ChatController::class, 'index']);
     Route::get('chats/{chat}', [ChatController::class, 'show']);
     Route::post('chats/{chat}/send-message', [ChatController::class, 'sendMessage']);
+
+    Route::apiResource('products', ProductController::class);
+
+    Route::get('home', [HomeController::class, 'index']);
 
 });

@@ -63,7 +63,7 @@ class User extends Authenticatable
         return $this->morphOne(Otp::class, 'otpable')->latestOfMany();
     }
 
-    public function country(): BelongsTo
+    public function market(): BelongsTo
     {
         return $this->belongsTo(Country::class);
     }
@@ -71,9 +71,13 @@ class User extends Authenticatable
     {
         return $this->hasMany(Message::class, 'sender_id');
     }
-        public function chats(): BelongsToMany
+    public function chats(): BelongsToMany
     {
         return $this->belongsToMany(Chat::class, 'chat_member', 'user_id', 'chat_id');
+    }
+    public function products(): HasMany
+    {
+        return $this->hasMany(Product::class);
     }
 
     public function nextStep()
@@ -86,5 +90,10 @@ class User extends Authenticatable
             CompleteDataEnum::COUNTRY_ENTERED => CompleteDataEnum::INTERESTS_ENTERED,
             default => CompleteDataEnum::NONE,
         };
+    }
+
+    public function recommendedInterests()
+    {
+        return $this->interests()->withCount('products')->orderBy('products_count', 'desc');
     }
 }

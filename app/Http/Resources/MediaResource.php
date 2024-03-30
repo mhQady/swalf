@@ -4,7 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Request;
 
-class CountryResource extends BaseResource
+class MediaResource extends BaseResource
 {
     /**
      * Transform the resource into an array.
@@ -13,11 +13,14 @@ class CountryResource extends BaseResource
      */
     public function toArray(Request $request): array
     {
-        return [
+        $this->micro = [
             'id' => $this->id,
             'name' => $this->name,
-            'phone_code' => $this->phone_code,
-            'has_market' => $this->has_market,
+            'file_name' => $this->file_name,
+            'full_url' => $this->getFullUrl(),
         ];
+
+
+        return $this->getResource();
     }
 }

@@ -4,7 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Request;
 
-class CountryResource extends BaseResource
+class CityResource extends BaseResource
 {
     /**
      * Transform the resource into an array.
@@ -16,8 +16,6 @@ class CountryResource extends BaseResource
         return [
             'id' => $this->id,
             'name' => $this->name,
-            'phone_code' => $this->phone_code,
-            'has_market' => $this->has_market,
         ];
     }
 }
