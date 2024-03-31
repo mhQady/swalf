@@ -8,10 +8,14 @@ use App\Models\Interest;
 
 class InterestsController extends ApiBaseController
 {
-    public function __invoke()
+    public function index()
     {
         return $this->respondWithSuccess(null, [
-            'interests' => InterestResource::collection(Interest::select(['id', 'name'])->get()),
+            'interests' => InterestResource::collection(Interest::select(['id', 'name'])
+                ->whereHas('products')
+                ->withCount('products')
+                ->orderBy('products_count', 'desc')
+                ->get()),
         ]);
     }
 }

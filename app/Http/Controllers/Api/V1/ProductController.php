@@ -10,7 +10,6 @@ use App\Http\Controllers\Api\ApiBaseController;
 
 class ProductController extends ApiBaseController
 {
-
     public function index()
     {
         return $this->respondWithSuccess(null, [
@@ -87,4 +86,6 @@ class ProductController extends ApiBaseController
 
         return $this->respondWithSuccess(__('main.deleted.product'));
     }
+
+
 }

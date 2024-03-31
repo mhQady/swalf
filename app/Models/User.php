@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\PublishStatusEnum;
 use Laravel\Sanctum\HasApiTokens;
 use App\Enums\User\CompleteDataEnum;
 use Illuminate\Notifications\Notifiable;
@@ -92,8 +93,13 @@ class User extends Authenticatable
         };
     }
 
-    public function recommendedInterests()
+    public function suggestedProducts()
     {
-        return $this->interests()->withCount('products')->orderBy('products_count', 'desc');
+        return Product::where('is_published', PublishStatusEnum::PUBLISHED->value)
+            ->where('user_id', '!=', $this->id)
+            ->whereIn('interest_id', $this->interests()->pluck('id'))
+            ->with('mainImg')
+            ->with('city')
+            ->latest();
     }
 }

@@ -34,7 +34,7 @@ Route::middleware('guest:sanctum')->group(function () {
 Route::middleware('auth:sanctum')->group(function () {
 
     Route::get('/user', function (Request $request) {
-        return new UserResource($request->user()->load('country'));
+        return new UserResource($request->user());
     });
 
     Route::post('/send-otp', function (Request $request) {
@@ -46,7 +46,7 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::get('countries', [CountriesController::class, 'index']);
     Route::get('countries/{country}/cities', [CountriesController::class, 'getCities']);
-    Route::get('interests', InterestsController::class);
+    Route::get('interests', [InterestsController::class, 'index']);
     Route::post('logout', LogoutController::class);
 
     Route::post('complete-data/enter-personal-info', [CompleteDataController::class, 'enterPersonalInfo']);
@@ -62,6 +62,8 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::apiResource('products', ProductController::class);
 
-    Route::get('home', [HomeController::class, 'index']);
+    Route::get('user/products/suggested', [HomeController::class, 'getSuggestedProducts']);
+    Route::get('user/interests', [HomeController::class, 'getUserInterests']);
+    Route::get('search', [HomeController::class, 'search']);
 
 });
