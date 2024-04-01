@@ -15,6 +15,8 @@ class Chat extends Model
     protected $keyType = 'string';
     public $incrementing = false;
 
+    protected $fillable = ['product_id', 'started_by'];
+
     public static function booted()
     {
         static::creating(function ($model) {
@@ -24,9 +26,9 @@ class Chat extends Model
 
     public function messages(): HasMany
     {
-        return $this->hasMany(Message::class);
+        return $this->hasMany(Message::class)->latest()->skip(request('messages_skip', 0))->take(10);
     }
-        public function latestMessage(): HasOne
+    public function latestMessage(): HasOne
     {
         return $this->hasOne(Message::class)->latestOfMany();
     }
@@ -34,6 +36,16 @@ class Chat extends Model
     public function members()
     {
         return $this->belongsToMany(User::class, 'chat_member', 'chat_id', 'user_id');
+    }
+
+    public function product()
+    {
+        return $this->belongsTo(Product::class);
+    }
+
+    public function startedBy()
+    {
+        return $this->belongsTo(User::class, 'started_by');
     }
 
 }

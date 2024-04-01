@@ -22,7 +22,7 @@ window.Echo = new Echo({
 });
 
 
-window.Echo.channel('chat.1')
+window.Echo.channel("chats.83")
     .listen('MessageSent', (e) => {
         console.log(e, 'yaa raaab');
     });

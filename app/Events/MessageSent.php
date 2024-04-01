@@ -2,15 +2,16 @@
 
 namespace App\Events;
 
-use App\Http\Resources\MessageResource;
-use App\Http\Resources\UserResource;
+use App\Models\Chat;
 use App\Models\User;
 use App\Models\Message;
-use Illuminate\Contracts\Auth\Authenticatable;
-use Illuminate\Queue\SerializesModels;
+use App\Http\Resources\UserResource;
 use Illuminate\Broadcasting\Channel;
+use Illuminate\Queue\SerializesModels;
+use App\Http\Resources\MessageResource;
 use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Broadcasting\PresenceChannel;
+use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
@@ -21,21 +22,18 @@ class MessageSent implements ShouldBroadcast
     use InteractsWithSockets;
     use SerializesModels;
 
-    protected $chatId;
     public $message;
-    public $sender;
 
-    public function __construct(Message $message, User|Authenticatable $sender)
+    public function __construct(Message $message, protected Chat $chat)
     {
-        $this->chatId = $message->chat_id;
-        $this->message = new MessageResource($message);
-        $this->sender = new UserResource($sender);
+        $this->message = new MessageResource($message->load('sender'));
     }
 
     public function broadcastOn(): array
     {
-        return [
-            new Channel('chat.1'),
-        ];
+        return $this->chat->members()
+            ->select('users.id')->where('users.id', '!=', $this->message->sender_id)->pluck('users.id')
+            ->map(fn($id) => new Channel("chats.{$id}"))->toArray();
+
     }
 }

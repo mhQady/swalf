@@ -2,33 +2,32 @@
 
 namespace App\Http\Controllers\Api\V1;
 
-use App\Http\Resources\MessageResource;
 use App\Models\Chat;
 use App\Models\Message;
 use App\Events\MessageSent;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use App\Http\Controllers\Controller;
 use App\Http\Resources\ChatResource;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\StartChatRequest;
+use App\Http\Resources\MessageResource;
 use App\Http\Controllers\Api\ApiBaseController;
 
 class ChatController extends ApiBaseController
 {
     public function index()
     {
-        // $chats = $this->ticket->messages()->with('file')->latest()->skip(count($this->ticketMessages))->take(10)->get()->sortBy('created_at');
-
         $chats = auth()->user()->chats()->select('chats.id', 'chats.created_at')
+
             ->with([
                 'latestMessage' => function ($query) {
-                    $query->select('id','messages.chat_id','sender_id','message', 'messages.created_at'); // Get the latest message
+                    $query->select('id', 'messages.chat_id', 'sender_id', 'message', 'messages.created_at'); // Get the latest message
                 }
             ])
             ->leftJoinSub(
                 Message::select('chat_id', DB::raw('MAX(created_at) as latest_message'))
                     ->groupBy('chat_id'),
-                    'latest_messages',
+                'latest_messages',
                 'latest_messages.chat_id',
                 '=',
                 'chats.id'
@@ -37,16 +36,16 @@ class ChatController extends ApiBaseController
             ->get();
 
 
-        return $this->respondWithSuccess(null,
-        [
-            'chats' => ChatResource::collection($chats),
-        ]
-    );
+        return $this->respondWithSuccess(
+            null,
+            [
+                'chats' => ChatResource::collection($chats),
+            ]
+        );
     }
     public function show(Chat $chat)
     {
-
-        $messages = $chat->messages()->latest()->skip(request('skip', 0))->take(10)->get();
+        $messages = $chat->messages()->get();
 
         return $this->respondWithSuccess(
             null,
@@ -56,18 +55,30 @@ class ChatController extends ApiBaseController
         );
     }
 
+    public function startChat(StartChatRequest $request)
+    {
+        $chat = Chat::firstOrCreate([
+            'product_id' => $request->input('product_id'),
+            'started_by' => Auth::id()
+        ])->load(['product.owner', 'messages']);
+
+        $chat->members()->syncWithoutDetaching([Auth::id(), $chat->product->user_id]);
+
+        return $this->respondWithSuccess(__('main.sent.message'), [
+            'chat' => new ChatResource($chat),
+        ]);
+    }
+
     public function sendMessage(Chat $chat, Request $request)
     {
         $sender = Auth::user();
 
-        // $sender->chats()->attach($chat->id);
-
         $message = $sender->messages()->create([
+            'chat_id' => $chat->id,
             'message' => $request->input('message'),
-            'chat_id' => $chat->id
         ]);
 
-        broadcast(new MessageSent( $message, $sender))->toOthers();
+        broadcast(new MessageSent($message, $chat))->toOthers();
 
         return $this->respondWithSuccess(__('main.sent.message'));
     }

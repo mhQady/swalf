@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\Scopes\MarketScope;
 use Illuminate\Contracts\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\MorphOne;
 use Spatie\MediaLibrary\HasMedia;
 use Illuminate\Database\Eloquent\Model;
@@ -42,6 +43,11 @@ class Product extends Model implements HasMedia
         foreach (self::MEDIA_COLLECTIONS as $collection) {
             $this->addMediaCollection($collection);
         }
+    }
+
+    public function owner(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'user_id');
     }
 
     public function scopeFilter(Builder $query): void

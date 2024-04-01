@@ -12,6 +12,10 @@ return new class () extends Migration {
     {
         Schema::create('chats', function (Blueprint $table) {
             $table->uuid('id')->primary();
+            $table->foreignId('product_id')->nullable()->constrained('products')->onDelete('set null');
+            $table->foreignId('started_by')->nullable()->constrained('users')->onDelete('set null');
+            $table->unique(['product_id', 'started_by'])->index('product_id_started_by_index');
+            $table->boolean('is_closed')->default(false);
             $table->timestamps();
         });
     }

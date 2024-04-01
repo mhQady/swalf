@@ -14,9 +14,17 @@ class ChatResource extends BaseResource
      */
     public function toArray(Request $request): array
     {
-        return [
+        $this->micro = [
             'id' => $this->id,
-            'latest_message' => new MessageResource($this->whenLoaded('latestMessage'))
         ];
+
+        $this->relations = [
+            'latest_message' => new MessageResource($this->whenLoaded('latestMessage')),
+            'product' => new ProductResource($this->whenLoaded('product')),
+            'started_by' => new UserResource($this->whenLoaded('startedBy')),
+            'messages' => MessageResource::collection($this->whenLoaded('messages')),
+        ];
+
+        return $this->getResource();
     }
 }

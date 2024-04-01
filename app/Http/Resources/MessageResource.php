@@ -14,11 +14,18 @@ class MessageResource extends BaseResource
      */
     public function toArray(Request $request): array
     {
-        return [
+        $this->micro = [
             'id' => $this->id,
+            'chat_id' => $this->chat_id,
             'message' => $this->message,
             'sender_id' => $this->sender_id,
             'created_at' => $this->created_at
         ];
+
+        $this->relations = [
+            'sender' => new UserResource($this->whenLoaded('sender')),
+        ];
+
+        return $this->getResource();
     }
 }

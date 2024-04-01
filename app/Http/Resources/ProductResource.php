@@ -23,6 +23,7 @@ class ProductResource extends BaseResource
 
         $this->mini = [
             'description' => $this->description,
+            'user_id' => $this->user_id,
             'city_id' => $this->city_id,
             'country_id' => $this->country_id,
             'interest_id' => $this->interest_id,
@@ -33,6 +34,7 @@ class ProductResource extends BaseResource
             'main_img' => new MediaResource($this->whenLoaded('mainImg')),
             'city' => new CityResource($this->whenLoaded('city')),
             'media' => MediaResource::collection($this->whenLoaded('media')),
+            'owner' => new UserResource($this->whenLoaded('owner')),
         ];
 
         return $this->getResource();
