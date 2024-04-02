@@ -191,6 +191,7 @@ return [
     'attributes' => [
         'email' => 'البريد الالكتروني',
         'password' => 'كلمة المرور',
+        'message' => 'رسالة',
     ],
 
 ];

@@ -17,6 +17,7 @@ class MediaResource extends BaseResource
             'id' => $this->id,
             'name' => $this->name,
             'file_name' => $this->file_name,
+            'mime_type' => $this->mime_type,
             'full_url' => $this->getFullUrl(),
         ];
 

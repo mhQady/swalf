@@ -38,6 +38,12 @@ class Chat extends Model
         return $this->belongsToMany(User::class, 'chat_member', 'chat_id', 'user_id');
     }
 
+    # Only used for API
+    public function otherSideMembers()
+    {
+        return $this->members()->where('user_id', '!=', auth()->id());
+    }
+
     public function product()
     {
         return $this->belongsTo(Product::class);

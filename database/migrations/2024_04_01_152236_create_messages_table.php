@@ -1,5 +1,6 @@
 <?php
 
+use App\Enums\Chat\MessageTypeEnum;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -14,7 +15,9 @@ return new class extends Migration {
             $table->id();
             $table->foreignUuid('chat_id')->constrained('chats')->onDelete('cascade');
             $table->foreignId('sender_id')->constrained('users')->onDelete('cascade');
-            $table->text('message');
+            $table->text('message')->nullable();
+            $table->unsignedTinyInteger('type')->default(MessageTypeEnum::TEXT->value);
+            // $table->boolean('is_read')->default(false);
             $table->timestamps();
         });
     }

@@ -21,9 +21,10 @@ class ChatResource extends BaseResource
         $this->relations = [
             'latest_message' => new MessageResource($this->whenLoaded('latestMessage')),
             'product' => new ProductResource($this->whenLoaded('product')),
+            'other_side_members' => UserResource::collection($this->whenLoaded('otherSideMembers')),
+            'members' => UserResource::collection($this->whenLoaded('members')),
             'started_by' => new UserResource($this->whenLoaded('startedBy')),
             'messages' => MessageResource::collection($this->whenLoaded('messages')),
-            'members' => UserResource::collection($this->whenLoaded('members')),
         ];
 
         return $this->getResource();

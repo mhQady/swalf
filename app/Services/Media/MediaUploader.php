@@ -8,10 +8,11 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 class MediaUploader
 {
-    public static function upload($files, string $collection)
+    public static function upload($files, string|null $collection = 'main', Model|null $model = null)
     {
 
-        $temp = TempUploader::firstOrCreate();
+        $model = $model ?? TempUploader::firstOrCreate();
+
         $uploadedFiles = [];
 
         if (!is_iterable($files))
@@ -19,7 +20,7 @@ class MediaUploader
 
 
         foreach ($files as $file) {
-            $uploadedFiles[] = $temp->addMedia($file)->toMediaCollection($collection);
+            $uploadedFiles[] = $model->addMedia($file)->toMediaCollection($collection);
         }
 
         return $uploadedFiles;
