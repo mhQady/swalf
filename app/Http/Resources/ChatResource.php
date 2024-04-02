@@ -23,6 +23,7 @@ class ChatResource extends BaseResource
             'product' => new ProductResource($this->whenLoaded('product')),
             'started_by' => new UserResource($this->whenLoaded('startedBy')),
             'messages' => MessageResource::collection($this->whenLoaded('messages')),
+            'members' => UserResource::collection($this->whenLoaded('members')),
         ];
 
         return $this->getResource();

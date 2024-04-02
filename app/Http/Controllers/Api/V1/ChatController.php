@@ -10,7 +10,6 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Resources\ChatResource;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\StartChatRequest;
-use App\Http\Resources\MessageResource;
 use App\Http\Controllers\Api\ApiBaseController;
 
 class ChatController extends ApiBaseController
@@ -18,10 +17,9 @@ class ChatController extends ApiBaseController
     public function index()
     {
         $chats = auth()->user()->chats()->select('chats.id', 'chats.created_at')
-
             ->with([
                 'latestMessage' => function ($query) {
-                    $query->select('id', 'messages.chat_id', 'sender_id', 'message', 'messages.created_at'); // Get the latest message
+                    $query->select('id', 'messages.chat_id', 'sender_id', 'message', 'messages.created_at');
                 }
             ])
             ->leftJoinSub(
@@ -32,7 +30,8 @@ class ChatController extends ApiBaseController
                 '=',
                 'chats.id'
             )
-            ->orderByRaw("latest_messages.latest_message DESC, chats.created_at DESC") // Custom order
+            ->orderByRaw("latest_messages.latest_message DESC, chats.created_at DESC")
+            ->skip(request('chats_skip', 0))->take(10)
             ->get();
 
 
@@ -45,14 +44,11 @@ class ChatController extends ApiBaseController
     }
     public function show(Chat $chat)
     {
-        $messages = $chat->messages()->get();
+        $chat->load(['product', 'members', 'messages']);
 
-        return $this->respondWithSuccess(
-            null,
-            [
-                'messages' => MessageResource::collection($messages),
-            ]
-        );
+        return $this->respondWithSuccess(null, [
+            'chat' => new ChatResource($chat),
+        ]);
     }
 
     public function startChat(StartChatRequest $request)
@@ -60,7 +56,7 @@ class ChatController extends ApiBaseController
         $chat = Chat::firstOrCreate([
             'product_id' => $request->input('product_id'),
             'started_by' => Auth::id()
-        ])->load(['product.owner', 'messages']);
+        ])->load(['product', 'members', 'messages']);
 
         $chat->members()->syncWithoutDetaching([Auth::id(), $chat->product->user_id]);
 
