@@ -24,8 +24,13 @@ class MediaUploaderController extends ApiBaseController
                 'string',
                 function ($attribute, $value, $fail) use ($request) {
 
-                    if ($request->source === MediaSourceEnum::PRODUCT->value && !in_array($value, Product::MEDIA_COLLECTIONS))
-                        $fail('Collection name must be one of product files allowed collections (' . implode(',', Product::MEDIA_COLLECTIONS) . ') when the source is ' . MediaSourceEnum::PRODUCT->value);
+                    foreach (MediaSourceEnum::cases() as $case) {
+                        $model = '\App\Models\\' . ucfirst(strtolower($case->name));
+
+                        if ($request->source === $case->value && !in_array($value, $model::MEDIA_COLLECTIONS))
+                            $fail('Collection name must be one of collections allowed names (' . implode(',', $model::MEDIA_COLLECTIONS) . ') when the source is ' . $case->value);
+                    }
+
                 }
             ],
         ]);

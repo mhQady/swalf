@@ -30,7 +30,7 @@ class MessageRequest extends FormRequest
                 }
             ],
             'images' => ['nullable', 'array'],
-            'images.*' => 'nullable|file|mimes:jpg,jpeg,png,gif,pdf|max:5120',
+            'images.*' => 'nullable|file|mimes:jpg,jpeg,png,gif|max:5120',
             'voice' => ['nullable', 'file', 'mimetypes:audio/*', 'max:5120'],
         ];
     }

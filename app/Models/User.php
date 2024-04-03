@@ -4,24 +4,25 @@ namespace App\Models;
 
 use App\Enums\PublishStatusEnum;
 use Laravel\Sanctum\HasApiTokens;
+use Spatie\MediaLibrary\HasMedia;
 use App\Enums\User\CompleteDataEnum;
 use Illuminate\Notifications\Notifiable;
+use Spatie\MediaLibrary\InteractsWithMedia;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
-class User extends Authenticatable
+class User extends Authenticatable implements HasMedia
 {
-    use SoftDeletes, HasApiTokens, HasFactory, Notifiable;
+    use SoftDeletes, HasApiTokens, HasFactory, Notifiable, InteractsWithMedia;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array<int, string>
-     */
+    const MEDIA_COLLECTIONS = ['profile'];
+
     protected $guarded = [
         'id',
         'created_at',
@@ -66,7 +67,7 @@ class User extends Authenticatable
 
     public function market(): BelongsTo
     {
-        return $this->belongsTo(Country::class);
+        return $this->belongsTo(Country::class, 'country_id');
     }
     public function messages(): HasMany
     {
@@ -102,4 +103,26 @@ class User extends Authenticatable
             ->with('city')
             ->latest();
     }
+
+    public function registerMediaCollections(): void
+    {
+        $this->addMediaCollection('profile')
+            ->singleFile()
+            ->registerMediaConversions(function (Media $media) {
+                $this
+                    ->addMediaConversion('thumb')
+                    ->width(50)
+                    ->height(50);
+            });
+    }
+
+    protected function profileImgThumbUrl(): Attribute
+    {
+        return new Attribute(get: fn($value): string => $this->getFirstMediaUrl('profile', 'thumb'));
+    }
+    protected function profileImgUrl(): Attribute
+    {
+        return new Attribute(get: fn($value): string => $this->getFirstMediaUrl('profile'));
+    }
+
 }

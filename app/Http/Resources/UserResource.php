@@ -26,6 +26,9 @@ class UserResource extends BaseResource
             'email' => $this->email,
             'gender' => $this->gender,
             'birth_date' => $this->birth_date,
+            'profile_thumb' => $this->profileImgThumbUrl,
+            'profile_img' => $this->profileImgUrl,
+            // 'market_id' => $this->country_id,
         ];
 
         $this->mini = [
@@ -38,7 +41,7 @@ class UserResource extends BaseResource
 
         $this->relations = [
             'tokens' => $this->whenLoaded('tokens'),
-            'country' => new CountryResource($this->whenLoaded('country')),
+            'market' => new CountryResource($this->whenLoaded('market')),
         ];
 
         return $this->getResource();
