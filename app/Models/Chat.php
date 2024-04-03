@@ -2,10 +2,13 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\Relations\HasOne;
+use App\Events\ChatOpened;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Casts\Attribute;
+use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Chat extends Model
@@ -52,6 +55,35 @@ class Chat extends Model
     public function startedBy()
     {
         return $this->belongsTo(User::class, 'started_by');
+    }
+
+    protected function unreadMessagesCount(): Attribute
+    {
+        return new Attribute(
+            get: function ($value) {
+
+                $id = auth()->id();
+
+                return $this->messages()
+                    ->where('sender_id', '!=', $id)
+                    ->whereJsonDoesntContain('read_by', $id)
+                    ->count();
+            }
+        );
+    }
+    public function markMessagesAsRead()
+    {
+        $id = auth()->id();
+
+        $updated = $this->messages()
+            ->where('sender_id', '!=', $id)
+            ->whereJsonDoesntContain('read_by', $id)
+            ->update([
+                'read_by' => DB::raw('JSON_ARRAY_INSERT(read_by, CONCAT("$[",JSON_LENGTH(read_by),"]"),' . $id . ')'),
+            ]);
+
+        if ($updated)
+            broadcast(new ChatOpened($this))->toOthers();
     }
 
 }

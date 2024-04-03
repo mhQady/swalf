@@ -48,6 +48,8 @@ class ChatController extends ApiBaseController
     {
         $chat->load(['product', 'otherSideMembers', 'messages.media']);
 
+        $chat->markMessagesAsRead();
+
         return $this->respondWithSuccess(null, [
             'chat' => new ChatResource($chat),
         ]);

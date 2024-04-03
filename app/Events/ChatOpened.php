@@ -3,37 +3,37 @@
 namespace App\Events;
 
 use App\Models\Chat;
-use App\Models\User;
-use App\Models\Message;
 use App\Http\Resources\UserResource;
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Queue\SerializesModels;
-use App\Http\Resources\MessageResource;
 use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Broadcasting\PresenceChannel;
-use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 
-class MessageSent implements ShouldBroadcast
+class ChatOpened
 {
-    use Dispatchable;
-    use InteractsWithSockets;
-    use SerializesModels;
+    use Dispatchable, InteractsWithSockets, SerializesModels;
 
-    public $message;
 
-    public function __construct(Message $message, protected Chat $chat)
+    public $chat_id;
+    public $user;
+    public function __construct(protected Chat $chat)
     {
-        $this->message = new MessageResource($message->load('sender'));
+        $this->chat_id = $chat->id;
+        $this->user = new UserResource(auth()->user());
     }
 
+    /**
+     * Get the channels the event should broadcast on.
+     *
+     * @return array<int, \Illuminate\Broadcasting\Channel>
+     */
     public function broadcastOn(): array
     {
         return $this->chat->otherSideMembers()
             ->select('users.id')->pluck('users.id')
             ->map(fn($id) => new Channel("chats.{$id}"))->toArray();
-
     }
 }

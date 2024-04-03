@@ -16,6 +16,7 @@ class ChatResource extends BaseResource
     {
         $this->micro = [
             'id' => $this->id,
+            'unread_count' => $this->unreadMessagesCount,
         ];
 
         $this->relations = [

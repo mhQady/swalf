@@ -17,7 +17,7 @@ return new class extends Migration {
             $table->foreignId('sender_id')->constrained('users')->onDelete('cascade');
             $table->text('message')->nullable();
             $table->unsignedTinyInteger('type')->default(MessageTypeEnum::TEXT->value);
-            // $table->boolean('is_read')->default(false);
+            $table->json('read_by')->nullable();
             $table->timestamps();
         });
     }

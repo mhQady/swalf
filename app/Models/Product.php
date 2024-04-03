@@ -79,5 +79,7 @@ class Product extends Model implements HasMedia
 
             $query->where('city_id', request('cities'));
         });
+
+        $query->when(request('user'), fn($query) => $query->where('user_id', request('user')));
     }
 }

@@ -20,6 +20,8 @@ class MessageResource extends BaseResource
             'type' => $this->type,
             'sender_id' => $this->sender_id,
             'created_at' => $this->created_at,
+            'read_by' => $this->read_by,
+            'is_read' => $this->when($this->sender_id == auth()->id(), $this->isRead),
         ];
 
         $this->relations = [

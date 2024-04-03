@@ -15,7 +15,8 @@ class HomeController extends ApiBaseController
 
     public function search(Request $request)
     {
-        $products = Product::filter()->latest()->with('mainImg')->with('city');
+        $products = Product::where('user_id', '!=', auth()->id())
+            ->filter()->latest()->with('mainImg')->with('city');
 
         return $this->respondWithSuccess(null, [
             'results_count' => $products->count(),
