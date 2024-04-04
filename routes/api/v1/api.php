@@ -3,7 +3,6 @@
 use Illuminate\Http\Request;
 use App\Services\OTP\OtpSender;
 use App\Http\Resources\UserResource;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\V1\ChatController;
 use App\Http\Controllers\Api\V1\HomeController;
@@ -55,6 +54,7 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::post('profile/update', [ProfileController::class, 'update']);
     Route::delete('profile/delete', [ProfileController::class, 'delete']);
+    Route::post('profile/change-market', [ProfileController::class, 'changeMarket']);
 
     Route::get('chats', [ChatController::class, 'index']);
     Route::get('chats/{chat}', [ChatController::class, 'show']);

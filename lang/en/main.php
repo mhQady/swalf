@@ -16,6 +16,7 @@ return [
         'user' => 'User not found',
         'product' => 'Product not found',
         'file' => 'File not found',
+        'market' => 'Market not found',
     ],
     'not_owner' => [
         'product' => 'You are not the owner of this product',
@@ -33,6 +34,7 @@ return [
     'updated' => [
         'profile' => 'Profile has been updated successfully',
         'product' => 'Product has been updated successfully',
+        'market' => 'Market has been updated successfully',
     ],
     'deleted' => [
         'user' => 'User has been deleted successfully',
