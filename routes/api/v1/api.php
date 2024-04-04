@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\V1\ReportController;
 use Illuminate\Http\Request;
 use App\Services\OTP\OtpSender;
 use App\Http\Resources\UserResource;
@@ -60,6 +61,9 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('chats/{chat}', [ChatController::class, 'show']);
     Route::post('chats/start', [ChatController::class, 'startChat']);
     Route::post('chats/{chat}/send-message/', [ChatController::class, 'sendMessage']);
+
+    Route::get('reports/types', [ReportController::class, 'getReportTypes']);
+    Route::post('reports/send', [ReportController::class, 'send']);
 
     Route::apiResource('products', ProductController::class);
 
