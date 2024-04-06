@@ -34,7 +34,7 @@ Route::middleware('guest:sanctum')->group(function () {
 Route::middleware('auth:sanctum')->group(function () {
 
     Route::get('/user', function (Request $request) {
-        return new UserResource($request->user());
+        return new UserResource($request->user()->load('market'));
     });
 
     Route::post('/send-otp', function (Request $request) {
