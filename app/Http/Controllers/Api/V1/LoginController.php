@@ -13,7 +13,7 @@ class LoginController extends ApiBaseController
 {
     public function __invoke(LoginRequest $request)
     {
-        $user = User::where('phone', $request->phone)->first();
+        $user = User::where('phone', $request->phone)->with('market')->first();
 
         if (!$user || !Hash::check($request->password, $user->password)) {
             throw ValidationException::withMessages([

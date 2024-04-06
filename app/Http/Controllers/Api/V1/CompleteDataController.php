@@ -56,6 +56,8 @@ class CompleteDataController extends ApiBaseController
             )
         );
 
+        $user->load('market');
+
         return $this->respondWithSuccess(__('main.country_entered'), ['user' => new UserResource($user->fresh())]);
     }
 
@@ -67,7 +69,7 @@ class CompleteDataController extends ApiBaseController
             'interests.*' => ['integer', 'exists:interests,id']
         ]);
 
-        $user = Auth::user();
+        $user = Auth::user()->load('market');
 
         if ($user->interests()->exists())
             return $this->respondWithErrors(__('main.wrong_step'), 409, ['step' => $user->nextStep(), 'user' => new UserResource($user)]);
