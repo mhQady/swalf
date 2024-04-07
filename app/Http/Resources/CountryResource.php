@@ -18,6 +18,7 @@ class CountryResource extends BaseResource
             'name' => $this->name,
             'phone_code' => $this->phone_code,
             'has_market' => $this->has_market,
+            'currency_code' => $this->currency_code
         ];
     }
 }
