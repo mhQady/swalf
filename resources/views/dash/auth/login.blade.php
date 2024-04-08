@@ -25,8 +25,8 @@
                                         placeholder="@lang('main.password')" aria-label="Password" name="password">
                                     @error('password') <small class="text-danger">{{ $message }}</small> @enderror
                                 </div>
-                                <div class="form-check form-switch" dir="ltr">
-                                    <input class="form-check-input" @checked(old('remember')) type="checkbox"
+                                <div class="form-check form-switch text-right">
+                                    <input class="form-check-input" dir="ltr" @checked(old('remember')) type="checkbox"
                                         id="rememberMe" name="remember" value="1">
                                     <label class="form-check-label" for="rememberMe">@lang('main.remember_me')</label>
                                 </div>

@@ -72,7 +72,7 @@ class GeneratePermissions
     protected static function mergeModels(): array
     {
         return [
-
+            'role',
         ];
     }
 

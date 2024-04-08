@@ -21,6 +21,10 @@ Route::middleware('auth:admin')->group(function () {
         return Auth::check();
     });
 
+    Route::resources([
+        'roles' => \App\Http\Controllers\Dash\RoleController::class,
+    ]);
+
 });
 
 

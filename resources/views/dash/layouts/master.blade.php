@@ -6,17 +6,16 @@
     <body class="g-sidenav-show  bg-gray-100">
         @include('dash.layouts.aside')
 
-        <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg ">
+        <main class="main-content position-relative max-height-vh-100 h-100 border-radius-lg">
 
             @include('dash.layouts.nav')
 
-            <div class="container-fluid py-4">
+            <div class="container-fluid py-4" style="min-height: 82vh">
 
                 @yield('content')
 
-                @include('dash.layouts.footer')
-
             </div>
+            @include('dash.layouts.footer')
         </main>
         {{-- <div class="fixed-plugin">
             <a class="fixed-plugin-button text-dark position-fixed px-3 py-2">
@@ -119,8 +118,9 @@
             </div>
         </div> --}}
 
+        <!-- Delete Modal -->
 
-
+        @include('dash.layouts.scripts')
     </body>
 
 </html>

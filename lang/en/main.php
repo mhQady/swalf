@@ -11,7 +11,12 @@ return [
         'otp' => 'OTP is valid',
     ],
     'confirm' => [
+        '0' => 'Confirm',
         'phone' => 'Please confirm your phone',
+        'delete' => 'Confirm delete',
+    ],
+    'sure' => [
+        'delete' => 'Are you sure you want to delete this?',
     ],
     'not_found' => [
         'user' => 'User not found',
@@ -36,14 +41,30 @@ return [
         'profile' => 'Profile has been updated successfully',
         'product' => 'Product has been updated successfully',
         'market' => 'Market has been updated successfully',
+        'role' => 'Role has been updated successfully',
+    ],
+    'update' => [
+        'profile' => 'Update Profile',
+        'product' => 'Update Product',
+        'market' => 'Update Market',
+        'role' => 'Update Role',
     ],
     'deleted' => [
         'user' => 'User has been deleted successfully',
         'product' => 'Product has been deleted successfully',
         'file' => 'Media has been deleted successfully',
+        'role' => 'Role has been deleted successfully',
     ],
     'created' => [
         'product' => 'Product has been created successfully',
+        'role' => 'Role has been created successfully',
+    ],
+    'create' => [
+        'product' => 'Create Product',
+        'role' => 'Create Role',
+    ],
+    'select' => [
+        'all' => 'Select All',
     ],
     'wrong_step' => 'Wrong step',
     'password_entered' => 'Password has been entered',
@@ -75,4 +96,10 @@ return [
     'profile' => 'Profile',
     'dashboard' => 'Dashboard',
     'home' => 'Home',
+    'management' => 'Management',
+    'name' => 'Name',
+    'created_at' => 'Created At',
+    'admins' => 'Admins',
+    'save' => 'Save',
+    'cancel' => 'Cancel',
 ];

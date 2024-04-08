@@ -172,8 +172,8 @@ return [
     */
 
     'custom' => [
-        'attribute-name' => [
-            'rule-name' => 'custom-message',
+        'permissions' => [
+            'required' => 'Please select at least one permission.',
         ],
     ],
 
@@ -190,6 +190,7 @@ return [
 
     'attributes' => [
         'message' => 'Message',
+        'permissions.*' => 'Permission',
     ],
 
 ];
