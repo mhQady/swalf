@@ -3371,6 +3371,15 @@ textarea.form-control-lg {
     border-bottom-left-radius: 0;
 }
 
+[dir="rtl"] .input-group> :not(:first-child):not(.dropdown-menu):not(.valid-tooltip):not(.valid-feedback):not(.invalid-tooltip):not(.invalid-feedback) {
+    margin-left: 0px;
+    margin-right: -1px;
+    border-top-left-radius: 0.5rem;
+    border-bottom-left-radius: 0.5rem;
+    border-top-right-radius: 0 !important;
+    border-bottom-right-radius: 0 !important;
+}
+
 .input-group>.form-floating:not(:first-child)>.form-control,
 .input-group>.form-floating:not(:first-child)>.form-select {
     border-top-left-radius: 0;
@@ -21574,8 +21583,22 @@ fieldset:disabled .btn {
     border-right: 0;
 }
 
+[dir="rtl"] .input-group .input-group-text {
+    border-left: 0;
+    border-right: 1px solid #d2d6da;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    border-top-right-radius: 0.5rem !important;
+    border-bottom-right-radius: 0.5rem !important;
+}
+
 .input-group .input-group-text+.form-control {
     border-left: none !important;
+}
+
+[dir="rtl"] .input-group .input-group-text+.form-control {
+    border-right: none !important;
+    border-left: 1px solid #d2d6da !important;
 }
 
 .form-group {

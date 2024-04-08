@@ -13,6 +13,9 @@
                     @endcan
                 </div>
             </div>
+            <div class="card-header pb-0">
+                @include('dash.components.search')
+            </div>
             <div class="card-body px-0 pb-0">
                 <div class="table-responsive">
                     <table class="table table-flush rtl" id="items-list">
@@ -55,9 +58,11 @@
                     </table>
                 </div>
             </div>
-            <div class="card-footer">
-                {{ $roles->links() }}
+            @if ($roles->hasPages())
+            <div class="card-footer d-flex justify-content-end">
+                {{ $roles->appends(['q' => request('q')])->links() }}
             </div>
+            @endif
         </div>
     </div>
 </div>

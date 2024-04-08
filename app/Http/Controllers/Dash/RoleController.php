@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\Dash;
 
+use App\Models\Role;
 use App\Models\Permission;
-use Spatie\Permission\Models\Role;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Dash\RoleRequest;
 
@@ -13,7 +13,7 @@ class RoleController extends Controller
     {
         $this->authorize('browse role');
 
-        $roles = Role::latest()->paginate(columns: ['id', 'name', 'created_at']);
+        $roles = Role::filter()->latest()->paginate(columns: ['id', 'name', 'created_at']);
 
         return view('dash.roles.index', compact('roles'));
     }

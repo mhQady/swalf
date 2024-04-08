@@ -102,4 +102,5 @@ return [
     'admins' => 'Admins',
     'save' => 'Save',
     'cancel' => 'Cancel',
+    'type_here' => 'Type here...',
 ];

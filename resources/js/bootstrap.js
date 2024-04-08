@@ -15,7 +15,6 @@ import '../assets/dash/js/plugins/datatables.js';
 
 import '../assets/dash/js/soft-ui-dashboard.min.js?v=1.1.1';
 
-
 var win = navigator.platform.indexOf('Win') > -1;
 
 if (win && document.querySelector('#sidenav-scrollbar')) {
@@ -36,3 +35,33 @@ import axios from 'axios';
 window.axios = axios;
 
 window.axios.defaults.headers.common[ 'X-Requested-With' ] = 'XMLHttpRequest';
+
+
+// adding on inputs attributes for calling the focused and defocused functions
+if (document.querySelectorAll('.input-group').length != 0) {
+    var allInputs = document.querySelectorAll('input.form-control');
+    allInputs.forEach(el => setAttributes(el, {
+        "onfocus": "focused(this)",
+        "onfocusout": "defocused(this)"
+    }));
+}
+
+// helper for adding on all elements multiple attributes
+function setAttributes(el, options) {
+    Object.keys(options).forEach(function (attr) {
+        el.setAttribute(attr, options[ attr ]);
+    })
+}
+
+window.focused = (el) => {
+    if (el.parentElement.classList.contains('input-group')) {
+        el.parentElement.classList.add('focused');
+    }
+}
+
+// when input is focused remove focused class for style
+window.defocused = (el) => {
+    if (el.parentElement.classList.contains('input-group')) {
+        el.parentElement.classList.remove('focused');
+    }
+}

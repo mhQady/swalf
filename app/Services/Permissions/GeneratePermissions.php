@@ -71,9 +71,7 @@ class GeneratePermissions
 
     protected static function mergeModels(): array
     {
-        return [
-            'role',
-        ];
+        return [];
     }
 
     protected static function diffModels(): array
@@ -84,6 +82,7 @@ class GeneratePermissions
             'chatmember',
             'state',
             'tempuploader',
+            'permission',
         ];
     }
 
