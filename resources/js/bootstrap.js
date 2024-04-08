@@ -12,6 +12,7 @@ import '../assets/dash/js/core/bootstrap.min.js';
 import '../assets/dash/js/plugins/perfect-scrollbar.min.js';
 
 import '../assets/dash/js/plugins/datatables.js';
+import '../assets/dash/js/plugins/choices.min.js';
 
 import '../assets/dash/js/soft-ui-dashboard.min.js?v=1.1.1';
 

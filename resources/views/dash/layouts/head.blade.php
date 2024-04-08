@@ -13,5 +13,4 @@
     <script src="{{ asset('vendor/sweetalert/sweetalert.all.js') }}"></script>
 
     @vite( 'resources/js/dashApp.js')
-
 </head>

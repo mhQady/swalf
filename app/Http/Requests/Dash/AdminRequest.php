@@ -2,17 +2,19 @@
 
 namespace App\Http\Requests\Dash;
 
+use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Http\FormRequest;
 
-class RoleRequest extends FormRequest
+class AdminRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
      */
     public function authorize(): bool
     {
-        return Gate::allows('add role');
+        return Gate::allows('add admin');
+
     }
 
     /**
@@ -23,10 +25,14 @@ class RoleRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|string|min:3|max:255|unique:roles,name,' . $this->role?->id,
-            'permissions' => 'required|array',
-            'permissions.*' => 'integer|exists:permissions,id',
+            'name' => 'required|string|min:3|max:255',
+            'email' => 'required|email|unique:admins,email,' . $this->admin?->id,
+            'password' => [
+                Rule::requiredIf(fn() => $this->method() === 'POST'),
+                'confirmed',
+            ],
+            'roles' => 'required|array',
+            'roles.*' => 'integer|exists:roles,id',
         ];
     }
-
 }

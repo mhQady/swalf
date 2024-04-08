@@ -1,3 +1,4 @@
+@csrf
 <div class="row mt-4">
     <div class="col-8">
         <div class="card">
@@ -38,7 +39,6 @@
     @endphp
     @foreach ($permissions as $key => $permission)
     <div class="col-3 mt-4">
-        @csrf
         <div class="card">
             <div class="card-body">
                 <div class="form-check d-flex justify-content-between align-items-center">

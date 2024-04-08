@@ -10,6 +10,6 @@ class Role extends SpatieRole
 {
     public function scopeFilter(Builder $query): void
     {
-        $query->where('name', 'like', '%' . request('q') . '%');
+        $query->when(request('q'), fn($query) => $query->where('name', 'like', '%' . request('q') . '%'));
     }
 }

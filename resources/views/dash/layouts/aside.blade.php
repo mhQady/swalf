@@ -625,7 +625,7 @@
             </li>
             <li class="nav-item">
                 <a data-bs-toggle="collapse" href="#managementNavMenu" aria-controls="managementNavMenu"
-                    @class(['nav-link', 'active'=> request()->is(['*/roles*'])])
+                    @class(['nav-link', 'active'=> request()->is(['dashboard/roles*','dashboard/admins*'])])
                     role="button" aria-expanded="false">
                     <div
                         class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center d-flex align-items-center justify-content-center  me-2">
@@ -633,7 +633,8 @@
                     </div>
                     <span class="nav-link-text ms-1">@lang('main.management')</span>
                 </a>
-                <div @class(['collapse', 'show'=> request()->is(['*/roles*'])]) id="managementNavMenu">
+                <div @class(['collapse', 'show'=> request()->is(['dashboard/roles*','dashboard/admins*'])])
+                    id="managementNavMenu">
                     <ul class="nav ms-4 ps-3">
                         <li class="nav-item ">
                             <a @class(['nav-link', 'active'=> request()->routeIs('dash.roles*')])
@@ -643,11 +644,10 @@
                             </a>
                         </li>
                         <li class="nav-item ">
-                            <a class="nav-link "
-                                href="https://www.creative-tim.com/learning-lab/bootstrap/alerts/soft-ui-dashboard"
-                                target="_blank">
-                                <span class="sidenav-mini-icon"> @lang('main.permissions') </span>
-                                <span class="sidenav-normal"> @lang('main.permissions') </span>
+                            <a @class(['nav-link', 'active'=> request()->routeIs('dash.admins*')])
+                                href="{{ route('dash.admins.index') }}">
+                                <span class="sidenav-mini-icon"> @lang('main.admins') </span>
+                                <span class="sidenav-normal"> @lang('main.admins') </span>
                             </a>
                         </li>
                     </ul>

@@ -23,7 +23,8 @@ Route::middleware('auth:admin')->group(function () {
 
     Route::resources([
         'roles' => \App\Http\Controllers\Dash\RoleController::class,
-    ]);
+        'admins' => \App\Http\Controllers\Dash\AdminController::class,
+    ], ['except' => ['show']]);
 
 });
 

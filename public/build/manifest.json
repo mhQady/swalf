@@ -1,0 +1,67 @@
+{
+  "resources/assets/dash/fonts/nucleo-icons.eot": {
+    "file": "assets/nucleo-icons-BgnVbBvX.eot",
+    "src": "resources/assets/dash/fonts/nucleo-icons.eot"
+  },
+  "resources/assets/dash/fonts/nucleo-icons.svg": {
+    "file": "assets/nucleo-icons-C6OFysxg.svg",
+    "src": "resources/assets/dash/fonts/nucleo-icons.svg"
+  },
+  "resources/assets/dash/fonts/nucleo-icons.ttf": {
+    "file": "assets/nucleo-icons-kNTzvw2K.ttf",
+    "src": "resources/assets/dash/fonts/nucleo-icons.ttf"
+  },
+  "resources/assets/dash/fonts/nucleo-icons.woff": {
+    "file": "assets/nucleo-icons-BuEzPWOc.woff",
+    "src": "resources/assets/dash/fonts/nucleo-icons.woff"
+  },
+  "resources/assets/dash/fonts/nucleo-icons.woff2": {
+    "file": "assets/nucleo-icons-CTnIBWcu.woff2",
+    "src": "resources/assets/dash/fonts/nucleo-icons.woff2"
+  },
+  "resources/assets/dash/fonts/tajawal/tajawal-regular.ttf": {
+    "file": "assets/tajawal-regular-BF6-vjr0.ttf",
+    "src": "resources/assets/dash/fonts/tajawal/tajawal-regular.ttf"
+  },
+  "resources/assets/dash/fonts/tajawal/tajawal-regular.woff": {
+    "file": "assets/tajawal-regular-B-oxzxgl.woff",
+    "src": "resources/assets/dash/fonts/tajawal/tajawal-regular.woff"
+  },
+  "resources/assets/dash/fonts/tajawal/tajawal-regular.woff2": {
+    "file": "assets/tajawal-regular-fhy3h0G1.woff2",
+    "src": "resources/assets/dash/fonts/tajawal/tajawal-regular.woff2"
+  },
+  "resources/assets/img/leaflet/layers-2x.png": {
+    "file": "assets/layers-2x-Bpkbi35X.png",
+    "src": "resources/assets/img/leaflet/layers-2x.png"
+  },
+  "resources/assets/img/leaflet/layers.png": {
+    "file": "assets/layers-BWBAp2CZ.png",
+    "src": "resources/assets/img/leaflet/layers.png"
+  },
+  "resources/assets/img/leaflet/marker-icon.png": {
+    "file": "assets/marker-icon-hN30_KVU.png",
+    "src": "resources/assets/img/leaflet/marker-icon.png"
+  },
+  "resources/js/dashApp.js": {
+    "file": "assets/dashApp-Bzt0NG6J.js",
+    "src": "resources/js/dashApp.js",
+    "isEntry": true,
+    "css": [
+      "assets/dashApp-D-3u6E95.css"
+    ],
+    "assets": [
+      "assets/tajawal-regular-BF6-vjr0.ttf",
+      "assets/tajawal-regular-fhy3h0G1.woff2",
+      "assets/tajawal-regular-B-oxzxgl.woff",
+      "assets/nucleo-icons-BgnVbBvX.eot",
+      "assets/nucleo-icons-CTnIBWcu.woff2",
+      "assets/nucleo-icons-BuEzPWOc.woff",
+      "assets/nucleo-icons-kNTzvw2K.ttf",
+      "assets/nucleo-icons-C6OFysxg.svg",
+      "assets/layers-BWBAp2CZ.png",
+      "assets/layers-2x-Bpkbi35X.png",
+      "assets/marker-icon-hN30_KVU.png"
+    ]
+  }
+}

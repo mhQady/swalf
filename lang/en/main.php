@@ -42,26 +42,31 @@ return [
         'product' => 'Product has been updated successfully',
         'market' => 'Market has been updated successfully',
         'role' => 'Role has been updated successfully',
+        'admin' => 'Admin has been updated successfully',
     ],
     'update' => [
         'profile' => 'Update Profile',
         'product' => 'Update Product',
         'market' => 'Update Market',
         'role' => 'Update Role',
+        'admin' => 'Update Admin',
     ],
     'deleted' => [
         'user' => 'User has been deleted successfully',
         'product' => 'Product has been deleted successfully',
         'file' => 'Media has been deleted successfully',
         'role' => 'Role has been deleted successfully',
+        'admin' => 'Admin has been deleted successfully',
     ],
     'created' => [
         'product' => 'Product has been created successfully',
         'role' => 'Role has been created successfully',
+        'admin' => 'Admin has been created successfully',
     ],
     'create' => [
         'product' => 'Create Product',
         'role' => 'Create Role',
+        'admin' => 'Create Admin',
     ],
     'select' => [
         'all' => 'Select All',
