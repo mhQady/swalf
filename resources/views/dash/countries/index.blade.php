@@ -56,13 +56,11 @@ use \App\Enums\Country\HasMarketEnum;
                                             <i class="fa-solid fa-pen-to-square"></i>
                                         </a>
                                         @endcan
-                                        @if ($country->id != 1)
                                         @can('delete country')
                                         @include('dash.components.delete-model', ['route' => 'dash.countries.destroy',
                                         'id'
                                         => $country->id])
                                         @endcan
-                                        @endif
                                     </div>
                                 </td>
                             </tr>
