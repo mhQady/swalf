@@ -56,7 +56,7 @@ class Product extends Model implements HasMedia
     }
     public function similarities()
     {
-        return $this->interest->products()->where('id', '!=', $this->id)->with('mainImg')->inRandomOrder()->limit(4)->get();
+        return $this->interest->products()->where('id', '!=', $this->id)->with(['mainImg', 'city'])->inRandomOrder()->limit(4)->get();
     }
 
     public function scopeFilter(Builder $query): void
