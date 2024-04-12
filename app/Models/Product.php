@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Models\Scopes\MarketScope;
 use Illuminate\Contracts\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphOne;
 use Spatie\MediaLibrary\HasMedia;
 use Illuminate\Database\Eloquent\Model;
@@ -26,15 +27,15 @@ class Product extends Model implements HasMedia
         'old_price' => 'float',
     ];
 
-    public function interest()
+    public function interest(): BelongsTo
     {
         return $this->belongsTo(Interest::class);
     }
-    public function city()
+    public function city(): BelongsTo
     {
         return $this->belongsTo(City::class);
     }
-    public function country()
+    public function country(): BelongsTo
     {
         return $this->belongsTo(Country::class);
     }
@@ -52,6 +53,10 @@ class Product extends Model implements HasMedia
     public function owner(): BelongsTo
     {
         return $this->belongsTo(User::class, 'user_id');
+    }
+    public function similarities()
+    {
+        return $this->interest->products()->where('id', '!=', $this->id)->with('mainImg')->inRandomOrder()->limit(4)->get();
     }
 
     public function scopeFilter(Builder $query): void

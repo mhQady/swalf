@@ -53,6 +53,7 @@ class ProductController extends ApiBaseController
     {
         return $this->respondWithSuccess(null, [
             'product' => new ProductResource($product->load('media', 'interest', 'city', 'country', 'owner')),
+            'similarities' => $product->user_id == auth()->id() ? [] : ProductResource::collection($product->similarities())
         ]);
     }
 
@@ -86,6 +87,4 @@ class ProductController extends ApiBaseController
 
         return $this->respondWithSuccess(__('main.deleted.product'));
     }
-
-
 }
