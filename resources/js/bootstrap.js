@@ -6,15 +6,13 @@ import '../assets/dash/fonts/tajawal/tajawal.css'
 import '../assets/dash/css/nucleo-icons.css';
 import '../assets/dash/css/nucleo-svg.css';
 import '../assets/dash/css/soft-ui-dashboard.css?v=1.1.1';
+// console.log('hello bootstrap');
+// import '../assets/dash/js/core/popper.min.js';
+import "@popperjs/core"
 
-import '../assets/dash/js/core/popper.min.js';
-import '../assets/dash/js/core/bootstrap.min.js';
-import '../assets/dash/js/plugins/perfect-scrollbar.min.js';
+// import '../assets/dash/js/core/bootstrap.min.js';
 
-import '../assets/dash/js/plugins/datatables.js';
-import '../assets/dash/js/plugins/choices.min.js';
-
-import '../assets/dash/js/soft-ui-dashboard.min.js?v=1.1.1';
+import '../assets/dash/js/soft-ui-dashboard.js?v=1.1.1';
 
 var win = navigator.platform.indexOf('Win') > -1;
 

@@ -44,7 +44,8 @@
     "src": "resources/assets/img/leaflet/marker-icon.png"
   },
   "resources/js/dashApp.js": {
-    "file": "assets/dashApp-Bzt0NG6J.js",
+    "file": "assets/dashApp-C8KuKhj-.js",
+    "name": "dashApp",
     "src": "resources/js/dashApp.js",
     "isEntry": true,
     "css": [

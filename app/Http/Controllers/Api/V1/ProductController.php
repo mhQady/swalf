@@ -34,7 +34,7 @@ class ProductController extends ApiBaseController
 
             $product = Product::create($data);
 
-            if (count($request->files_ids))
+            if ($request->files_ids)
                 syncFiles($product, $request->files_ids);
 
             DB::commit();
@@ -52,7 +52,7 @@ class ProductController extends ApiBaseController
     public function show(Product $product)
     {
         return $this->respondWithSuccess(null, [
-            'product' => new ProductResource($product->load('media')),
+            'product' => new ProductResource($product->load('media', 'interest', 'city', 'country', 'owner')),
         ]);
     }
 

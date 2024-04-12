@@ -70,14 +70,14 @@
 </div>
 @endSection
 @push('scripts')
-<script type="text/javascript">
+<script defer type="text/javascript">
     window.onload = function() {
-    new simpleDatatables.DataTable("#items-list", {
-    searchable: false,
-    fixedHeight: false,
-    paging: false
-    });
+        new simpleDatatables.DataTable("#items-list", {
+        searchable: false,
+        fixedHeight: false,
+        paging: false
+        });
 
-}
+    }
 </script>
 @endpush

@@ -1,4 +1,7 @@
 "use strict";
+
+import * as bootstrap from "bootstrap";
+
 (function () {
     var isWindows = navigator.platform.indexOf('Win') > -1 ? true : false;
 
@@ -52,7 +55,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     var toastButtonList = [].slice.call(document.querySelectorAll(".toast-btn"));
-
+    console.log('asdasdasd');
     toastButtonList.map(function (toastButtonEl) {
         toastButtonEl.addEventListener("click", function () {
             var toastToTrigger = document.getElementById(toastButtonEl.dataset.target);

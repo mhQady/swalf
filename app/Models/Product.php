@@ -34,6 +34,10 @@ class Product extends Model implements HasMedia
     {
         return $this->belongsTo(City::class);
     }
+    public function country()
+    {
+        return $this->belongsTo(Country::class);
+    }
     public function mainImg(): MorphOne
     {
         return $this->morphOne(config('media-library.media_model'), 'model')->oldestOfMany();

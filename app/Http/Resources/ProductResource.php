@@ -24,15 +24,17 @@ class ProductResource extends BaseResource
         $this->mini = [
             'description' => $this->description,
             'user_id' => $this->user_id,
-            'city_id' => $this->city_id,
-            'country_id' => $this->country_id,
+            // 'city_id' => $this->city_id,
+            // 'country_id' => $this->country_id,
             'interest_id' => $this->interest_id,
             'is_published' => $this->is_published,
         ];
 
         $this->relations = [
             'main_img' => new MediaResource($this->whenLoaded('mainImg')),
+            'interest' => new InterestResource($this->whenLoaded('interest')),
             'city' => new CityResource($this->whenLoaded('city')),
+            'country' => new CountryResource($this->whenLoaded('country')),
             'media' => MediaResource::collection($this->whenLoaded('media')),
             'owner' => new UserResource($this->whenLoaded('owner')),
         ];
