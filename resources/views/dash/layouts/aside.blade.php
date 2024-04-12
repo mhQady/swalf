@@ -623,6 +623,7 @@
             <li class="nav-item">
                 <hr class="horizontal dark" />
             </li>
+            @canany(['browse role', 'browse admin', 'browse country'])
             <li class="nav-item">
                 <a data-bs-toggle="collapse" href="#managementNavMenu" aria-controls="managementNavMenu"
                     @class(['nav-link', 'active'=> request()->is(['dashboard/roles*','dashboard/admins*'])])
@@ -633,9 +634,11 @@
                     </div>
                     <span class="nav-link-text ms-1">@lang('main.management')</span>
                 </a>
-                <div @class(['collapse', 'show'=> request()->is(['dashboard/roles*','dashboard/admins*'])])
+                <div @class(['collapse', 'show'=>
+                    request()->is(['dashboard/roles*','dashboard/admins*','dashboard/countries*'])])
                     id="managementNavMenu">
                     <ul class="nav ms-4 ps-3">
+                        @can('browse role')
                         <li class="nav-item ">
                             <a @class(['nav-link', 'active'=> request()->routeIs('dash.roles*')])
                                 href="{{ route('dash.roles.index') }}">
@@ -643,6 +646,8 @@
                                 <span class="sidenav-normal"> @lang('main.roles') </span>
                             </a>
                         </li>
+                        @endcan
+                        @can('browse admin')
                         <li class="nav-item ">
                             <a @class(['nav-link', 'active'=> request()->routeIs('dash.admins*')])
                                 href="{{ route('dash.admins.index') }}">
@@ -650,9 +655,20 @@
                                 <span class="sidenav-normal"> @lang('main.admins') </span>
                             </a>
                         </li>
+                        @endcan
+                        @can('browse country')
+                        <li class="nav-item">
+                            <a @class(['nav-link', 'active'=> request()->routeIs('dash.countries*')])
+                                href="{{ route('dash.countries.index') }}">
+                                <span class="sidenav-mini-icon"> @lang('main.countries') </span>
+                                <span class="sidenav-normal"> @lang('main.countries') </span>
+                            </a>
+                        </li>
+                        @endcan
                     </ul>
                 </div>
             </li>
+            @endcanany
             <li class="nav-item">
                 <a class="nav-link"
                     href="https://github.com/creativetimofficial/ct-soft-ui-dashboard-pro/blob/main/CHANGELOG.md"

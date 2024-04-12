@@ -12,6 +12,7 @@
 
     <script src="{{ asset('dash/perfect-scrollbar.min.js') }}"></script>
     <script src="{{ asset('dash/datatables.js') }}"></script>
+    <script src="{{ asset('dash/choices.min.js') }}"></script>
     <script src="{{ asset('vendor/sweetalert/sweetalert.all.js') }}"></script>
 
 

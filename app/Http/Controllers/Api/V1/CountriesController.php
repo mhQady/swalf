@@ -14,7 +14,7 @@ class CountriesController extends ApiBaseController
     public function index()
     {
         return $this->respondWithSuccess(null, [
-            'countries' => CountryResource::collection(Country::select(['id', 'name', 'phone_code', 'has_market', 'currency_code'])
+            'countries' => CountryResource::collection(Country::select(['id', 'name', 'is_active', 'phone_code', 'has_market', 'currency_code'])
                 ->ofHasMarket(request('only_markets'))->get()),
         ]);
     }

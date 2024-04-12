@@ -13,7 +13,7 @@
                 </div>
             </div>
         </div>
-        <div class="row">
+        {{-- <div class="row">
             <div class="col-lg-5 col-sm-6">
                 <div class="card  mb-4">
                     <div class="card-body p-3">
@@ -242,10 +242,10 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> --}}
     </div>
 </div>
-<div class="row mt-4">
+{{-- <div class="row mt-4">
     <div class="col-lg-5 mb-lg-0 mb-4">
         <div class="card z-index-2">
             <div class="card-body p-3">
@@ -417,12 +417,5 @@
             </div>
         </div>
     </div>
-</div>
-<div class="row">
-    <div class="col-12">
-        <div id="globe" class="position-absolute end-0 top-10 mt-sm-3 mt-7 me-lg-7">
-            <canvas width="700" height="600" class="w-lg-100 h-lg-100 w-75 h-75 me-lg-0 me-n10 mt-lg-5"></canvas>
-        </div>
-    </div>
-</div>
+</div> --}}
 @endsection

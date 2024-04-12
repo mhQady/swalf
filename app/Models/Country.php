@@ -2,12 +2,21 @@
 
 namespace App\Models;
 
+use App\Enums\Country\HasMarketEnum;
+use App\Enums\Country\StatusEnum;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Country extends Model
 {
     protected $guarded = ['id'];
+    public $timestamps = false;
+
+    protected $casts = [
+        'is_active' => StatusEnum::class,
+        'has_market' => HasMarketEnum::class,
+    ];
     public function scopeOfHasMarket(Builder $query, $hasMarket = false): void
     {
         if ((bool) $hasMarket)
@@ -17,5 +26,19 @@ class Country extends Model
     public function cities()
     {
         return $this->hasManyThrough(City::class, State::class);
+    }
+
+    public function products(): HasMany
+    {
+        return $this->hasMany(Product::class);
+    }
+
+    public function scopeFilter(Builder $query): void
+    {
+        $query->when(request('q'), function ($query) {
+            $query->where('name', 'like', '%' . request('q') . '%')
+                ->orWhere('code', 'like', '%' . request('q') . '%')
+                ->orWhere('phone_code', 'like', '%' . request('q') . '%');
+        });
     }
 }

@@ -8,7 +8,7 @@ trait BaseEnum
     {
         foreach (self::cases() as $case) {
             if ($type == $case->value) {
-                return "<span class='badge-sm " . self::badgesArray()[$case->value]['class'] . "'>" . self::badgesArray()[$case->value]['name'] . "</span>";
+                return "<span class='badge badge-sm " . self::badgesArray()[$case->value]['class'] . "'>" . self::badgesArray()[$case->value]['name'] . "</span>";
             }
         }
 
@@ -20,7 +20,7 @@ trait BaseEnum
         return collect(self::cases())->map(function ($status) {
             return [
                 'value' => $status->value,
-                'label' => __(strtolower($status->name))
+                'label' => __('main.' . strtolower($status->name))
             ];
         });
     }
@@ -58,6 +58,11 @@ trait BaseEnum
                 return strtolower($case->name);
             }
         }
+    }
+
+    public function label()
+    {
+        return __('main.' . strtolower($this->name));
     }
 
     public static function random(): self

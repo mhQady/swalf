@@ -43,6 +43,7 @@ return [
         'market' => 'Market has been updated successfully',
         'role' => 'Role has been updated successfully',
         'admin' => 'Admin has been updated successfully',
+        'country' => 'Country has been updated successfully',
     ],
     'update' => [
         'profile' => 'Update Profile',
@@ -50,6 +51,7 @@ return [
         'market' => 'Update Market',
         'role' => 'Update Role',
         'admin' => 'Update Admin',
+        'country' => 'Update Country',
     ],
     'deleted' => [
         'user' => 'User has been deleted successfully',
@@ -57,16 +59,19 @@ return [
         'file' => 'Media has been deleted successfully',
         'role' => 'Role has been deleted successfully',
         'admin' => 'Admin has been deleted successfully',
+        'country' => 'Country has been deleted successfully',
     ],
     'created' => [
         'product' => 'Product has been created successfully',
         'role' => 'Role has been created successfully',
         'admin' => 'Admin has been created successfully',
+        'country' => 'Country has been created successfully',
     ],
     'create' => [
         'product' => 'Create Product',
         'role' => 'Create Role',
         'admin' => 'Create Admin',
+        'country' => 'Create Country',
     ],
     'select' => [
         'all' => 'Select All',
@@ -108,4 +113,13 @@ return [
     'save' => 'Save',
     'cancel' => 'Cancel',
     'type_here' => 'Type here...',
+    'code' => 'Code',
+    'currency' => 'Currency',
+    'phone_code' => 'Phone Code',
+    'status' => 'Status',
+    'has_market' => 'Has Market',
+    'active' => 'Active',
+    'inactive' => 'Inactive',
+    'yes' => 'Yes',
+    'no' => 'No',
 ];

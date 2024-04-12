@@ -197,6 +197,9 @@ return [
         'permissions.*' => 'احد الصلاحيات',
         'roles' => 'الرُتب',
         'roles.*' => 'احد الرُتب',
+        'code' => 'الرمز',
+        'phone_code' => 'رمز الهاتف',
+        'currency_code' => 'العُملة',
     ],
 
 ];
