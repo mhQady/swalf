@@ -89,6 +89,7 @@ return [
     'count' => [
         'product' => 'Products Count',
     ],
+    'img' => 'Image',
     'wrong_step' => 'Wrong step',
     'password_entered' => 'Password has been entered',
     'logged_out' => 'Logged out successfully',

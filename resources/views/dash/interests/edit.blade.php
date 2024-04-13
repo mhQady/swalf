@@ -2,7 +2,7 @@
 route('dash.interests.index')]]])
 @section('title', $interest->name)
 @section('content')
-<form action="{{ route('dash.interests.update', $interest->id) }}" method="POST">
+<form action="{{ route('dash.interests.update', $interest->id) }}" method="POST" enctype="multipart/form-data">
     <div class="d-flex justify-content-between align-items-center">
         <h4>{{ $interest->name }}</h4>
         <button type="submit" class="btn bg-gradient-primary mb-0">@lang('main.save')</button>

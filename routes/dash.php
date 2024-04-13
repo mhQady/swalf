@@ -17,6 +17,8 @@ Route::middleware('auth:admin')->group(function () {
 
     Route::view('/', 'dash.index')->name('home');
 
+    Route::delete('media/{media}', [\App\Http\Controllers\Api\V1\MediaUploaderController::class, 'deleteFile']);
+
     Route::post('chat', function ($user) {
         return Auth::check();
     });

@@ -26,6 +26,7 @@ class InterestRequest extends FormRequest
     {
         return [
             'name.ar' => 'required|string|min:3|max:255',
+            'img' => 'required|file|mimes:jpg,jpeg,png,gif|max:5120',
         ];
     }
 }

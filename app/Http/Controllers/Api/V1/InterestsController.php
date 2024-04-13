@@ -12,7 +12,6 @@ class InterestsController extends ApiBaseController
     {
         return $this->respondWithSuccess(null, [
             'interests' => InterestResource::collection(Interest::select(['id', 'name'])
-                ->whereHas('products')
                 ->withCount('products')
                 ->orderBy('products_count', 'desc')
                 ->get()),

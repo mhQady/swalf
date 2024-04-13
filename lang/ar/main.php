@@ -89,6 +89,7 @@ return [
     'count' => [
         'product' => 'عدد المُنتجات',
     ],
+    'img' => 'صورة',
     'wrong_step' => 'خطأ في الخطوة',
     'interests' => 'الاهتمامات',
     'password_entered' => 'تم تسجيل كلمة المرور بالفعل',

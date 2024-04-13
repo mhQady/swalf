@@ -16,6 +16,8 @@ class InterestResource extends BaseResource
         return [
             'id' => $this->id,
             'name' => $this->name,
+            'main_thumb' => $this->mainImgThumbUrl,
+            'main_img' => $this->mainImgUrl,
         ];
     }
 }

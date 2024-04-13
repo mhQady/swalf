@@ -26,7 +26,15 @@ class InterestController extends Controller
 
     public function store(InterestRequest $request)
     {
-        Interest::create($request->validated());
+        try {
+            $interest = Interest::create($request->validated());
+
+            if ($request->hasFile('img'))
+                uploadFiles($request->file('img'), Interest::MEDIA_COLLECTIONS[0], $interest);
+        } catch (\Exception $e) {
+            toast(__('messages.Error occurred, Please try again later'), 'error');
+            return back();
+        }
 
         toast(__('main.created.interest'), 'success');
 
@@ -42,7 +50,17 @@ class InterestController extends Controller
 
     public function update(Interest $interest, InterestRequest $request)
     {
-        $interest->update($request->validated());
+
+        try {
+            $interest->update($request->validated());
+
+            if ($request->hasFile('img'))
+                uploadFiles($request->file('img'), Interest::MEDIA_COLLECTIONS[0], $interest);
+
+        } catch (\Exception $e) {
+            toast(__('messages.Error occurred, Please try again later'), 'error');
+            return back();
+        }
 
         toast(__('main.updated.interest'), 'success');
 
