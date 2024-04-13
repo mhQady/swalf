@@ -44,6 +44,7 @@ return [
         'role' => 'Role has been updated successfully',
         'admin' => 'Admin has been updated successfully',
         'country' => 'Country has been updated successfully',
+        'city' => 'City has been updated successfully',
     ],
     'update' => [
         'profile' => 'Update Profile',
@@ -52,6 +53,7 @@ return [
         'role' => 'Update Role',
         'admin' => 'Update Admin',
         'country' => 'Update Country',
+        'city' => 'Update City',
     ],
     'deleted' => [
         'user' => 'User has been deleted successfully',
@@ -60,18 +62,21 @@ return [
         'role' => 'Role has been deleted successfully',
         'admin' => 'Admin has been deleted successfully',
         'country' => 'Country has been deleted successfully',
+        'city' => 'City has been deleted successfully',
     ],
     'created' => [
         'product' => 'Product has been created successfully',
         'role' => 'Role has been created successfully',
         'admin' => 'Admin has been created successfully',
         'country' => 'Country has been created successfully',
+        'city' => 'City has been created successfully',
     ],
     'create' => [
         'product' => 'Create Product',
         'role' => 'Create Role',
         'admin' => 'Create Admin',
         'country' => 'Create Country',
+        'city' => 'Create City',
     ],
     'select' => [
         'all' => 'Select All',
@@ -122,4 +127,5 @@ return [
     'inactive' => 'Inactive',
     'yes' => 'Yes',
     'no' => 'No',
+    'country' => 'Country',
 ];

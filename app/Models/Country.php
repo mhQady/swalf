@@ -7,6 +7,7 @@ use App\Enums\Country\StatusEnum;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 
 class Country extends Model
 {
@@ -23,7 +24,11 @@ class Country extends Model
             $query->where('has_market', true);
     }
 
-    public function cities()
+    public function states(): HasMany
+    {
+        return $this->hasMany(State::class);
+    }
+    public function cities(): HasManyThrough
     {
         return $this->hasManyThrough(City::class, State::class);
     }

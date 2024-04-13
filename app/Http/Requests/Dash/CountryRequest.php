@@ -2,9 +2,10 @@
 
 namespace App\Http\Requests\Dash;
 
-use App\Enums\Country\HasMarketEnum;
 use Illuminate\Validation\Rule;
 use App\Enums\Country\StatusEnum;
+use App\Enums\Country\HasMarketEnum;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Http\FormRequest;
 
 class CountryRequest extends FormRequest
@@ -14,7 +15,7 @@ class CountryRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return true;
+        return Gate::allows('add country');
     }
 
     /**

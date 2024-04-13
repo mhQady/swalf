@@ -635,7 +635,7 @@
                     <span class="nav-link-text ms-1">@lang('main.management')</span>
                 </a>
                 <div @class(['collapse', 'show'=>
-                    request()->is(['dashboard/roles*','dashboard/admins*','dashboard/countries*'])])
+                    request()->is(['dashboard/roles*','dashboard/admins*','dashboard/countries*','dashboard/cities*'])])
                     id="managementNavMenu">
                     <ul class="nav ms-4 ps-3">
                         @can('browse role')
@@ -662,6 +662,15 @@
                                 href="{{ route('dash.countries.index') }}">
                                 <span class="sidenav-mini-icon"> @lang('main.countries') </span>
                                 <span class="sidenav-normal"> @lang('main.countries') </span>
+                            </a>
+                        </li>
+                        @endcan
+                        @can('browse city')
+                        <li class="nav-item">
+                            <a @class(['nav-link', 'active'=> request()->routeIs('dash.cities*')])
+                                href="{{ route('dash.cities.index') }}">
+                                <span class="sidenav-mini-icon"> @lang('main.cities') </span>
+                                <span class="sidenav-normal"> @lang('main.cities') </span>
                             </a>
                         </li>
                         @endcan
