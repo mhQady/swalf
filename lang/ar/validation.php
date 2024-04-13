@@ -200,6 +200,7 @@ return [
         'code' => 'الرمز',
         'phone_code' => 'رمز الهاتف',
         'currency_code' => 'العُملة',
+        'name.ar' => 'الاسم'
     ],
 
 ];

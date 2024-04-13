@@ -26,6 +26,7 @@ Route::middleware('auth:admin')->group(function () {
         'admins' => \App\Http\Controllers\Dash\AdminController::class,
         'countries' => \App\Http\Controllers\Dash\CountryController::class,
         'cities' => \App\Http\Controllers\Dash\CityController::class,
+        'interests' => \App\Http\Controllers\Dash\InterestController::class,
     ], ['except' => ['show']]);
 
 });

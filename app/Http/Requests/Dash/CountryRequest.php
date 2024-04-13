@@ -15,7 +15,7 @@ class CountryRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return Gate::allows('add country');
+        return Gate::allows($this->method() === 'POST' ? 'add country' : 'edit country');
     }
 
     /**

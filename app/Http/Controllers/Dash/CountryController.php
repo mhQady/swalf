@@ -36,6 +36,8 @@ class CountryController extends Controller
 
     public function edit(Country $country)
     {
+        $this->authorize('edit country');
+
         return view('dash.countries.edit', compact('country'));
     }
 
@@ -50,7 +52,9 @@ class CountryController extends Controller
 
     public function destroy(Country $country)
     {
-        if ($country->hasMarket == HasMarketEnum::YES || $country->has('products')) {
+        $this->authorize('delete country');
+
+        if ($country->hasMarket == HasMarketEnum::YES || $country->products()->exists()) {
             toast(__('messages.You can not delete This Country, it has products or has market'), 'warning');
             return back();
         }

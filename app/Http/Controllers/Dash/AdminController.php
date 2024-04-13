@@ -40,6 +40,8 @@ class AdminController extends Controller
 
     public function edit(Admin $admin)
     {
+        $this->authorize('edit admin');
+
         $admin->load('roles:id,name');
 
         $roles = Role::latest()->get(['id', 'name']);
@@ -62,6 +64,8 @@ class AdminController extends Controller
 
     public function destroy(Admin $admin)
     {
+        $this->authorize('delete admin');
+
         if ($admin->id == 1 || $admin->name == 'Super Admin') {
             toast(__('messages.You can not delete Super Admin Account'), 'warning');
             return back();

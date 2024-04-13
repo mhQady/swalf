@@ -3,8 +3,9 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 use Spatie\Translatable\HasTranslations;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Interest extends Model
 {
@@ -23,5 +24,8 @@ class Interest extends Model
         return $this->belongsToMany(User::class);
     }
 
-
+    public function scopeFilter(Builder $query): void
+    {
+        $query->when(request('q'), fn($query) => $query->where('name->ar', 'like', '%' . request('q') . '%')->orWhere('name->en', 'like', '%' . request('q') . '%'));
+    }
 }

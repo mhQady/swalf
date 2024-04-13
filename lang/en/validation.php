@@ -191,6 +191,7 @@ return [
     'attributes' => [
         'message' => 'Message',
         'permissions.*' => 'Permission',
+        'name.ar' => 'Name',
     ],
 
 ];

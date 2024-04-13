@@ -45,6 +45,7 @@ return [
         'admin' => 'Admin has been updated successfully',
         'country' => 'Country has been updated successfully',
         'city' => 'City has been updated successfully',
+        'interest' => 'Interest has been updated successfully',
     ],
     'update' => [
         'profile' => 'Update Profile',
@@ -54,6 +55,7 @@ return [
         'admin' => 'Update Admin',
         'country' => 'Update Country',
         'city' => 'Update City',
+        'interest' => 'Update Interest',
     ],
     'deleted' => [
         'user' => 'User has been deleted successfully',
@@ -63,6 +65,7 @@ return [
         'admin' => 'Admin has been deleted successfully',
         'country' => 'Country has been deleted successfully',
         'city' => 'City has been deleted successfully',
+        'interest' => 'Interest has been deleted successfully',
     ],
     'created' => [
         'product' => 'Product has been created successfully',
@@ -70,6 +73,7 @@ return [
         'admin' => 'Admin has been created successfully',
         'country' => 'Country has been created successfully',
         'city' => 'City has been created successfully',
+        'interest' => 'Interest has been created successfully',
     ],
     'create' => [
         'product' => 'Create Product',
@@ -77,9 +81,13 @@ return [
         'admin' => 'Create Admin',
         'country' => 'Create Country',
         'city' => 'Create City',
+        'interest' => 'Create Interest',
     ],
     'select' => [
         'all' => 'Select All',
+    ],
+    'count' => [
+        'product' => 'Products Count',
     ],
     'wrong_step' => 'Wrong step',
     'password_entered' => 'Password has been entered',

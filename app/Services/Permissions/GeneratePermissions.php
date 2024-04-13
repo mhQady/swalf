@@ -83,6 +83,9 @@ class GeneratePermissions
             'state',
             'tempuploader',
             'permission',
+            'interestuser',
+            'message',
+            'product'
         ];
     }
 

@@ -6,7 +6,6 @@ use App\Models\Admin;
 use App\Models\Permission;
 use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Role;
-use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\PermissionRegistrar;
 use App\Services\Permissions\GeneratePermissions;
 
@@ -19,7 +18,6 @@ class PermissionSeeder extends Seeder
      */
     public function run()
     {
-
         app()[PermissionRegistrar::class]->forgetCachedPermissions();
 
         $this->command->info('Adding default permissions...');

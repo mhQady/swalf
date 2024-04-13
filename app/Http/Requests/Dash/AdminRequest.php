@@ -13,7 +13,10 @@ class AdminRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return Gate::allows('add admin');
+
+        $check = $this->method() === 'POST' ? 'add interest' : 'edit interest';
+
+        return Gate::allows($check);
 
     }
 

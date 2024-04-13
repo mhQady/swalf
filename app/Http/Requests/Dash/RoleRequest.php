@@ -12,7 +12,7 @@ class RoleRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return Gate::allows('add role');
+        return Gate::allows($this->method() === 'POST' ? 'add role' : 'edit role');
     }
 
     /**

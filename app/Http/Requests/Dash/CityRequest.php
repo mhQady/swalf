@@ -13,7 +13,9 @@ class CityRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return Gate::allows('add city');
+        $check = $this->method() === 'POST' ? 'add city' : 'edit city';
+
+        return Gate::allows($check);
     }
 
     /**

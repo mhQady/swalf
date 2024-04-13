@@ -40,6 +40,8 @@ class RoleController extends Controller
 
     public function edit(Role $role)
     {
+        $this->authorize('edit role');
+
         $role->load('permissions:id,name');
 
         $permissions = Permission::get(['id', 'name', 'model'])->groupBy('model');
@@ -60,6 +62,8 @@ class RoleController extends Controller
 
     public function destroy(Role $role)
     {
+        $this->authorize('delete role');
+
         if ($role->id == 1 || $role->name == 'super-admin') {
             toast(__('messages.You can not delete Super Admin Role'), 'warning');
             return back();

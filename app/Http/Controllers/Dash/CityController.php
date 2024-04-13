@@ -38,6 +38,8 @@ class CityController extends Controller
 
     public function edit(City $city)
     {
+        $this->authorize('edit city');
+
         $city->load('state');
 
         $countries = Country::whereHas('states')->get(['id', 'name']);
@@ -56,6 +58,8 @@ class CityController extends Controller
 
     public function destroy(City $city)
     {
+        $this->authorize('delete city');
+
         if ($city->products()->exists()) {
             toast(__('messages.You can not delete This City, it has products'), 'warning');
             return back();
