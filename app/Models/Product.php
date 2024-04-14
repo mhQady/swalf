@@ -25,6 +25,7 @@ class Product extends Model implements HasMedia
         'is_published' => 'boolean',
         'price' => 'float',
         'old_price' => 'float',
+        'allowed_ways' => 'array',
     ];
 
     public function interest(): BelongsTo

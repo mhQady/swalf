@@ -41,6 +41,8 @@ Route::middleware('auth:sanctum')->group(function () {
         OtpSender::send(request()->user(), 1, __('main.sent.otp'));
     });
 
+    Route::get('communication-ways', fn() => response()->json(['status' => 200, 'data' => \App\Enums\Product\CommunicationWayEnum::mapForSelect()]));
+
     Route::post('media/upload', [MediaUploaderController::class, 'uploadFile']);
     Route::delete('media/{media}', [MediaUploaderController::class, 'deleteFile']);
 

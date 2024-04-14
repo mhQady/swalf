@@ -195,6 +195,8 @@ return [
         'name' => 'الاسم',
         'permissions' => 'الصلاحيات',
         'permissions.*' => 'احد الصلاحيات',
+        'allowed_ways' => 'طرق الاتصال',
+        'allowed_ways.*' => 'احد الطرق الاتصال',
         'roles' => 'الرُتب',
         'roles.*' => 'احد الرُتب',
         'code' => 'الرمز',

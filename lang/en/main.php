@@ -137,4 +137,8 @@ return [
     'yes' => 'Yes',
     'no' => 'No',
     'country' => 'Country',
+    'call' => 'Call',
+    'sms' => 'SMS',
+    'chat' => 'Chat',
+    'in_app_call' => 'In App Call',
 ];

@@ -192,6 +192,8 @@ return [
         'message' => 'Message',
         'permissions.*' => 'Permission',
         'name.ar' => 'Name',
+        'allowed_ways' => 'Allowed Ways',
+        'allowed_ways.*' => 'Allowed Way',
     ],
 
 ];
