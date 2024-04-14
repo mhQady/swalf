@@ -28,7 +28,7 @@ class ProductResource extends BaseResource
             // 'country_id' => $this->country_id,
             'interest_id' => $this->interest_id,
             'is_published' => $this->is_published,
-            'allowed_ways' => $this->allowed_ways,
+            'allowed_way' => $this->allowed_way,
         ];
 
         $this->relations = [

@@ -34,8 +34,7 @@ class ProductRequest extends FormRequest
             'is_published' => ['required', Rule::in(PublishStatusEnum::values())],
             'files_ids' => ['nullable', 'array'],
             'files_ids.*' => ['nullable', 'integer', 'exists:media,id'],
-            'allowed_ways' => ['required', 'array', 'min:1'],
-            'allowed_ways.*' => ['required', Rule::in(CommunicationWayEnum::values())],
+            'allowed_way' => ['required', Rule::in([1, 2, 3])],
         ];
     }
 }
