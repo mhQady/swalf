@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\V1\ReportController;
+use App\Http\Controllers\Api\V1\SocialLoginController;
 use Illuminate\Http\Request;
 use App\Services\OTP\OtpSender;
 use App\Http\Resources\UserResource;
@@ -29,6 +30,8 @@ Route::middleware('guest:sanctum')->group(function () {
     Route::post('forgot-password/send-otp', [ForgotPasswordController::class, 'sendOtp']);
     Route::post('forgot-password/confirm-otp', [ForgotPasswordController::class, 'confirmOtp']);
     Route::post('forgot-password/change-password', [ForgotPasswordController::class, 'changePassword']);
+
+    Route::get('login/social/{driver?}', [SocialLoginController::class, 'redirectToGoogle']);
 });
 
 Route::middleware('auth:sanctum')->group(function () {
