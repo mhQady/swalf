@@ -74,7 +74,7 @@ class ProductController extends ApiBaseController
         }
 
         return $this->respondWithSuccess(__('main.updated.product'), [
-            'product' => new ProductResource($product->with(['mainImg', 'city', 'interest'])->get()),
+            'product' => new ProductResource($product->fresh()->load(['mainImg', 'city', 'interest'])),
         ]);
     }
 
