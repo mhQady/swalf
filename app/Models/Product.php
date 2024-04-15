@@ -22,7 +22,6 @@ class Product extends Model implements HasMedia
     protected $guarded = ['id'];
 
     protected $casts = [
-        'is_published' => 'boolean',
         'price' => 'float',
         'old_price' => 'float',
     ];

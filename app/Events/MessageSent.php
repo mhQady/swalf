@@ -34,6 +34,5 @@ class MessageSent implements ShouldBroadcast
         return $this->chat->otherSideMembers()
             ->select('users.id')->pluck('users.id')
             ->map(fn($id) => new Channel("chats.{$id}"))->toArray();
-
     }
 }

@@ -13,7 +13,7 @@ class ProductController extends ApiBaseController
     public function index()
     {
         return $this->respondWithSuccess(null, [
-            'products' => ProductResource::collection(auth()->user()->products()->with('mainImg')->latest()->get()),
+            'products' => ProductResource::collection(auth()->user()->products()->with(['mainImg', 'city', 'interest'])->latest()->get()),
         ]);
     }
 
@@ -64,7 +64,7 @@ class ProductController extends ApiBaseController
 
             $product->update($request->validated());
 
-            if (count($request->files_ids))
+            if (isset($request->files_ids))
                 syncFiles($product, $request->files_ids);
 
             DB::commit();
@@ -74,7 +74,7 @@ class ProductController extends ApiBaseController
         }
 
         return $this->respondWithSuccess(__('main.updated.product'), [
-            'product' => new ProductResource($product->fresh()),
+            'product' => new ProductResource($product->with(['mainImg', 'city', 'interest'])->fresh()),
         ]);
     }
 

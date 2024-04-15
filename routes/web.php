@@ -13,9 +13,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
+Route::get('/', fn() => redirect()->route('dash.home'))->name('home');
+Route::view('/privacy', 'welcome')->name('privacy');
+Route::view('/terms', 'welcome')->name('terms');
 
 Route::get('/login', function () {
     return view('welcome');
