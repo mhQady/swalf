@@ -31,4 +31,10 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+    'google' => [
+        'client_id' => '784489128451-im4lrv01vo4g336tgmb0u1631md63pha.apps.googleusercontent.com',
+        'client_secret' => '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t',
+        'redirect' => 'https://swalf.online/login/google/callback',
+    ],
+
 ];
