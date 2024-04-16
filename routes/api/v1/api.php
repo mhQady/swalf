@@ -31,9 +31,7 @@ Route::middleware('guest:sanctum')->group(function () {
     Route::post('forgot-password/confirm-otp', [ForgotPasswordController::class, 'confirmOtp']);
     Route::post('forgot-password/change-password', [ForgotPasswordController::class, 'changePassword']);
 
-    Route::get('login/social/{driver?}', [SocialLoginController::class, 'redirectToGoogle']);
-
-    Route::get('login/google/callback', [SocialLoginController::class, 'handleGoogleCallback']);
+    Route::post('login/social', [SocialLoginController::class, 'login']);
 });
 
 Route::middleware('auth:sanctum')->group(function () {

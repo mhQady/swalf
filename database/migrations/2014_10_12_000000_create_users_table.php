@@ -16,7 +16,7 @@ return new class extends Migration {
             $table->id();
             $table->unsignedTinyInteger('complete_data')->default(CompleteDataEnum::NONE->value);
             $table->string('phone_code')->default('966');
-            $table->string('phone')->unique();
+            $table->string('phone')->unique()->nullable();
             $table->timestamp('phone_verified_at')->nullable();
             $table->string('name')->nullable();
             $table->string('email')->unique()->nullable();
