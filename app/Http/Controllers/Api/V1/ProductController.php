@@ -13,7 +13,8 @@ class ProductController extends ApiBaseController
     public function index()
     {
         return $this->respondWithSuccess(null, [
-            'products' => ProductResource::collection(auth()->user()->products()->with(['mainImg', 'city', 'interest'])->latest()->get()),
+            'products' => ProductResource::collection(auth()->user()->products()->with(['mainImg', 'city', 'interest'])
+                ->latest()->skip(request('skip', 0))->take(10)->get()),
         ]);
     }
 
