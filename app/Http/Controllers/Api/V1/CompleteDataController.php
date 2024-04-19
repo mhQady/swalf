@@ -56,9 +56,9 @@ class CompleteDataController extends ApiBaseController
             )
         );
 
-        $user->load('market');
+        // $user->load('market');
 
-        return $this->respondWithSuccess(__('main.country_entered'), ['user' => new UserResource($user->fresh())]);
+        return $this->respondWithSuccess(__('main.country_entered'), ['user' => new UserResource($user->fresh()->load('market'))]);
     }
 
     # 6. Enter Interests
@@ -92,7 +92,7 @@ class CompleteDataController extends ApiBaseController
         return $this->respondWithSuccess(
             __('main.interests_entered'),
             [
-                'user' => new UserResource($user->fresh()),
+                'user' => new UserResource($user->fresh()->load('market')),
             ]
         );
     }
