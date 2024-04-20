@@ -19,6 +19,7 @@ class ChatController extends ApiBaseController
     {
         $chats = auth()->user()->chats()->select('chats.id', 'chats.created_at')
             ->with([
+                'product.mainImg',
                 'otherSideMembers',
                 'latestMessage' => function ($query) {
                     $query->select('id', 'messages.chat_id', 'sender_id', 'message', 'messages.type', 'messages.created_at');
