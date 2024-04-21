@@ -17,13 +17,11 @@ class ChatController extends ApiBaseController
 {
     public function index()
     {
-        $chats = auth()->user()->chats()->select('chats.id', 'chats.created_at')
+        $chats = auth()->user()->chats()->select('chats.id', 'chats.product_id', 'chats.created_at')
             ->with([
-                'product.mainImg',
                 'otherSideMembers',
-                'latestMessage' => function ($query) {
-                    $query->select('id', 'messages.chat_id', 'sender_id', 'message', 'messages.type', 'messages.created_at');
-                }
+                'product' => fn($q) => $q->with(['mainImg', 'city']),
+                'latestMessage' => fn($q) => $q->select('id', 'messages.chat_id', 'sender_id', 'message', 'messages.type', 'messages.created_at'),
             ])
             ->leftJoinSub(
                 Message::select('chat_id', DB::raw('MAX(created_at) as latest_message'))
@@ -72,7 +70,6 @@ class ChatController extends ApiBaseController
 
     public function sendMessage(Chat $chat, MessageRequest $request)
     {
-
         $sender = Auth::user();
 
         try {
