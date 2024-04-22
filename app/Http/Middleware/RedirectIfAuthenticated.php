@@ -22,8 +22,8 @@ class RedirectIfAuthenticated
         foreach ($guards as $guard) {
             if (Auth::guard($guard)->check()) {
 
-                if($guard == 'admin')
-                return to_route('dash.home');
+                if ($guard == 'admin')
+                    return redirect(RouteServiceProvider::DASHBOARD);
 
                 return redirect(RouteServiceProvider::HOME);
             }

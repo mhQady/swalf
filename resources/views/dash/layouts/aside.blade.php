@@ -25,6 +25,18 @@
                 </a>
             </li>
             @endcan
+            @can('browse user')
+            <li class="nav-item">
+                <a @class(['nav-link', 'active'=> request()->routeIs('dash.users*')])
+                    href="{{ route('dash.users.index') }}">
+                    <div
+                        class="icon icon-shape icon-sm shadow border-radius-md bg-white text-center d-flex align-items-center justify-content-center">
+                        <i class="fa-solid fa-icons"></i>
+                    </div>
+                    <span class="nav-link-text ms-1">@lang('main.users')</span>
+                </a>
+            </li>
+            @endcan
             <li class="nav-item">
                 <hr class="horizontal dark" />
             </li>

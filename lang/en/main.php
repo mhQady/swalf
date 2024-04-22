@@ -89,6 +89,13 @@ return [
     'count' => [
         'product' => 'Products Count',
     ],
+    'banned' => [
+        '0' => 'Banned',
+        'user' => 'User has been banned successfully',
+    ],
+    'restored' => [
+        'user' => 'User has been restored successfully',
+    ],
     'img' => 'Image',
     'wrong_step' => 'Wrong step',
     'password_entered' => 'Password has been entered',
@@ -141,4 +148,8 @@ return [
     'sms' => 'SMS',
     'chat' => 'Chat',
     'in_app_call' => 'In App Call',
+    'gender' => 'Gender',
+    'male' => 'Male',
+    'female' => 'Female',
+    'market' => 'Market',
 ];

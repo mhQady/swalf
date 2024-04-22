@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use App\Enums\PublishStatusEnum;
+use App\Enums\User\GenderEnum;
+use App\Enums\User\StatusEnum;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\MediaLibrary\HasMedia;
 use App\Enums\User\CompleteDataEnum;
@@ -10,6 +12,7 @@ use Illuminate\Notifications\Notifiable;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Casts\Attribute;
+use Illuminate\Contracts\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -46,6 +49,8 @@ class User extends Authenticatable implements HasMedia
      */
     protected $casts = [
         'complete_data' => CompleteDataEnum::class,
+        'gender' => GenderEnum::class,
+        'status' => StatusEnum::class,
         'phone_verified_at' => 'datetime',
         'change_password_requested_at' => 'datetime',
         'password' => 'hashed',
@@ -123,6 +128,48 @@ class User extends Authenticatable implements HasMedia
     protected function profileImgUrl(): Attribute
     {
         return new Attribute(get: fn($value): string => $this->getFirstMediaUrl('profile'));
+    }
+    protected function fullPhone(): Attribute
+    {
+        return new Attribute(get: fn($value): string => $this->phone_code . $this->phone);
+    }
+    protected function isBanned(): Attribute
+    {
+        return new Attribute(get: fn($value): bool => $this->status === StatusEnum::BANNED);
+    }
+
+    public function scopeFilter(Builder $query): void
+    {
+        $query->when(request('q'), function ($query) {
+            $query->where('name', 'like', '%' . request('q') . '%')
+                ->orWhere('email', 'like', '%' . request('q') . '%');
+        });
+
+        // $query->when(request('interests'), function ($query) {
+
+        //     $interests = explode(',', request('interests'));
+
+        //     if (count($interests) > 1) {
+        //         $query->whereIn('interest_id', $interests);
+        //         return;
+        //     }
+
+        //     $query->where('interest_id', request('interests'));
+        // });
+
+        // $query->when(request('cities'), function ($query) {
+
+        //     $cities = explode(',', request('cities'));
+
+        //     if (count($cities) > 1) {
+        //         $query->whereIn('city_id', $cities);
+        //         return;
+        //     }
+
+        //     $query->where('city_id', request('cities'));
+        // });
+
+        // $query->when(request('user'), fn($query) => $query->where('user_id', request('user')));
     }
 
 }

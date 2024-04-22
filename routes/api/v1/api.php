@@ -34,7 +34,7 @@ Route::middleware('guest:sanctum')->group(function () {
     Route::post('login/social', [SocialLoginController::class, 'login']);
 });
 
-Route::middleware('auth:sanctum')->group(function () {
+Route::middleware(['auth:sanctum', 'user.banned'])->group(function () {
 
     Route::get('/user', function (Request $request) {
         return new UserResource($request->user()->load('market'));

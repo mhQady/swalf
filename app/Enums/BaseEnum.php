@@ -4,15 +4,14 @@ namespace App\Enums;
 
 trait BaseEnum
 {
-    public static function badge($type): string
+    public function badge(): string
     {
-        foreach (self::cases() as $case) {
-            if ($type == $case->value) {
-                return "<span class='badge badge-sm " . self::badgesArray()[$case->value]['class'] . "'>" . self::badgesArray()[$case->value]['name'] . "</span>";
-            }
-        }
+        $className = get_class($this);
 
-        return '';
+        if (!method_exists($className, 'badgesArray'))
+            throw new \Exception('Method badgesArray() is required to be defined at ' . $className . ' for using badge array.');
+
+        return "<span class='badge badge-sm " . self::badgesArray()[$this->value]['class'] . "'>" . self::badgesArray()[$this->value]['name'] . "</span>";
     }
 
     public static function mapForSelect()

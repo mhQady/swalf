@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Dash\UserController;
 use App\Http\Controllers\Dash\LoginController;
 
 
@@ -30,6 +31,9 @@ Route::middleware('auth:admin')->group(function () {
         'cities' => \App\Http\Controllers\Dash\CityController::class,
         'interests' => \App\Http\Controllers\Dash\InterestController::class,
     ], ['except' => ['show']]);
+
+    Route::resource('users', UserController::class)->only(['index', 'destroy']);
+    Route::patch('users/{user}/change-status', [UserController::class, 'changeStatus'])->name('users.change-status');
 
 });
 
