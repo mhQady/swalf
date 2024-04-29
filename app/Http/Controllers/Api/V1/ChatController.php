@@ -60,7 +60,7 @@ class ChatController extends ApiBaseController
         $chat = Chat::firstOrCreate([
             'product_id' => $request->input('product_id'),
             'started_by' => Auth::id()
-        ])->load(['product', 'otherSideMembers', 'messages']);
+        ])->load(['product', 'otherSideMembers', 'latestMessage']);
 
         $chat->members()->syncWithoutDetaching([Auth::id(), $chat->product->user_id]);
 
