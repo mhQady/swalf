@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api\V1;
 
+use App\Http\Resources\MessageResource;
 use App\Models\Chat;
 use App\Models\Message;
 use App\Events\MessageSent;
@@ -96,6 +97,8 @@ class ChatController extends ApiBaseController
         }
 
 
-        return $this->respondWithSuccess(__('main.sent.message'));
+        return $this->respondWithSuccess(__('main.sent.message'), [
+            'message' => new MessageResource($message)
+        ]);
     }
 }
