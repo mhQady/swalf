@@ -85,7 +85,8 @@ class GeneratePermissions
             'permission',
             'interestuser',
             'message',
-            'product'
+            'product',
+            'fcmtoken'
         ];
     }
 

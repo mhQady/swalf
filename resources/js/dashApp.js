@@ -2,6 +2,7 @@
 
 import './bootstrap';
 import './pusher';
+import './fcm';
 
 
 // import '../assets/dash/js/plugins/smooth-scrollbar.min.js';

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
@@ -21,6 +22,10 @@ class Admin extends Authenticatable
     protected $casts = [
         'password' => 'hashed',
     ];
+    public function FcmToken(): MorphTo
+    {
+        return $this->morphTo(FcmToken::class);
+    }
 
     public function scopeNotSuperAdmin(Builder $query): void
     {

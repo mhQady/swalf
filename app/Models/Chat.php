@@ -84,6 +84,7 @@ class Chat extends Model
 
         if ($updated)
             broadcast(new ChatOpened($this))->toOthers();
+
     }
 
 }

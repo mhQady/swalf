@@ -5,6 +5,8 @@ namespace App\Models;
 use App\Enums\PublishStatusEnum;
 use App\Enums\User\GenderEnum;
 use App\Enums\User\StatusEnum;
+use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\MediaLibrary\HasMedia;
 use App\Enums\User\CompleteDataEnum;
@@ -85,6 +87,10 @@ class User extends Authenticatable implements HasMedia
     public function products(): HasMany
     {
         return $this->hasMany(Product::class);
+    }
+    public function FcmToken(): MorphTo
+    {
+        return $this->morphTo(FcmToken::class);
     }
 
     public function nextStep()
